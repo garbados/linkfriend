@@ -7,7 +7,7 @@
 
 *Working title. Cutesy moniker TBD.*
 
-A browser application for archiving, searching, and sharing bookmarks. At least, that's the goal. This project is a work in progress and will update accordingly as it develops. Many of the links in the document are still TODO so don't be surprised when they don't work.
+A browser application for archiving, searching, and sharing bookmarks. At least, that's the goal. This project is a work in progress and will update accordingly as it develops.
 
 ## Goals
 
@@ -31,6 +31,8 @@ This application will be reach its goals in stages. It will only become "social"
 
 ### V0
 
+V0 implements basic features, like annotating bookmarks and searching them.
+
 - [x] Save links.
 - [x] Annotate links with 
 	- [x] Title
@@ -43,7 +45,9 @@ This application will be reach its goals in stages. It will only become "social"
 
 ### V1
 
-- [ ] Annotat bookmarks with
+V1 adds social features, like sharing lists of bookmarks.
+
+- [ ] Annotate bookmarks with
 	- [ ] Lists
 - [ ] Create lists with their own
 	- [ ] Titles
@@ -55,11 +59,18 @@ This application will be reach its goals in stages. It will only become "social"
 - [ ] Store link lists as [Dat](https://datproject.org/) archives.
 - [ ] Subscribe to link lists using their discovery key or [Dat DNS URL](https://www.datprotocol.com/deps/0005-dns/).
 
+### V2
+
+V2 introduces durability features like backups.
+
+- [ ] Upload encrypted backups to friendly CouchDB installations.
+- [ ] Decrypt backups drawn from friendly CouchDB installations.
+
 ## Usage
 
 *These instructions are intended for the V1 application. The app is currently pre-V0.*
 
-As the application lives on the browser, there is no need to install anything. Just visit the [demo site](http://garbados.github.io/p2p-social-bookmarking) to start using it.
+As the application lives on the browser, there is no need to install anything. Just visit the [demo site](https://garbados.github.io/p2p-social-bookmarking/#/) to start using it.
 
 If you visit the website using the [Beaker Browser](https://beakerbrowser.com/), you will be able to share bookmarks with friends or follow lists of their bookmarks using Dat URLs.
 
