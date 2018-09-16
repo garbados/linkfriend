@@ -53,15 +53,15 @@ This application will be reach its goals in stages. It will only become "social"
 	- [ ] Bookmark lists
 	- [ ] List tags
 - [ ] Store link lists as [Dat](https://datproject.org/) archives.
-- [ ] Share or add link lists using their discovery key or [Dat DNS URL](https://www.datprotocol.com/deps/0005-dns/).
-
-### V2
-
-- [ ] Moderation controls such as keyword and tag filters.
+- [ ] Subscribe to link lists using their discovery key or [Dat DNS URL](https://www.datprotocol.com/deps/0005-dns/).
 
 ## Usage
 
-As the application lives on the browser, there is no need to install anything. Just visit the [demo site](#TODO) in the [Beaker browser](#TODO).
+*These instructions are intended for the V1 application. The app is currently pre-V0.*
+
+As the application lives on the browser, there is no need to install anything. Just visit the [demo site](http://garbados.github.io/p2p-social-bookmarking) to start using it.
+
+If you visit the website using the [Beaker Browser](https://beakerbrowser.com/), you will be able to share bookmarks with friends or follow lists of their bookmarks using Dat URLs.
 
 TODO: screenshots describing features, usage patterns, etc.
 
@@ -110,9 +110,9 @@ $ npm test
 
 All contributions are welcome but will be moderated at the discretion of the project's maintainers. This section will update as governance policies emerge and evolve.
 
-To report a bug or request a feature, please [file and issue](#TODO).
+To report a bug or request a feature, please [file and issue](https://github.com/garbados/p2p-social-bookmarking/issues).
 
-To share a patch, please [submit a pull request](#TODO).
+To share a patch, please [submit a pull request](https://github.com/garbados/p2p-social-bookmarking/pulls).
 
 ## License
 
