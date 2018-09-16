@@ -6,3 +6,14 @@ after_success:
 - nyc npm test
 - nyc report --reporter=text-lcov | coveralls
 - npm run build
+deploy:
+  github-token: "$GITHUB_TOKEN"
+  keep-history: true
+  local-dir: build
+  provider: pages
+  skip-cleanup: true
+  on:
+    branch: master
+env:
+  global:
+    secure: khqBwlb/HKhYnWbLkpHCBW4gNml4yUJoT7vrX0RYEIaE5z06uMIFIRXxHziZL1CL+rYj31cRNJ30Q6Iy9a8+nIZe1AHJmgtb5GbH8lO1auoVQldJ+R8HOeeDIXxhWiy7sm1T9qRdbQ51rk0i7k4UkQIK5bA6tqXaXoEnfjhUSL6kbW7i9Valwd/eR6s3tuTrQvpj0o2ZBr41WnAPxA6vPzUj0DAZqEhcDIuQUOWOByDfPgZZbZnXubSIdEJOFhvT9cNdsfWS/7HkuIa5Jha0kDvVK90BvNrw2cHteZ7qcCjIz+3q7P+6NmIe/pLUmVMwB+srkEeS0e3bROTMdPmnvHPHdoV1yONPo811VCwtx2S1QLQTj6b6iUltU2jZfoFzwSTnbqMa607+hb+JgTZHiq6R9giBzQwkeKvlYPLkeslns/YW7wkmSeAr3IeoqeL/PSiffXrBE6jG8f63vUa9EUxTILc09gJphka/o2noFfIjxZ1qy7SCWqdNy8cYfX4kfO+qPzf1SHwYH97zsiznLZhd4wtIk3PHEP/ixBizCBKTHPxnuL7kt6FtBNWqFoROsRVn9zLAZb+tTdmdzo3YShn/pSMAOb7/GCdvT7rSl01AfwpAVQO3P+W4h/TsaBMxGbWXRgvt4Ve18qZWwEcjaZE98MCfKyVlzWS87X3Mwlc=
