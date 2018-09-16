@@ -1,5 +1,10 @@
 # P2P Social Bookmarking
 
+[![Build Status](https://img.shields.io/travis/garbados/p2p-social-bookmarking/master.svg?style=flat-square)](https://travis-ci.org/garbados/p2p-social-bookmarking)
+[![Coverage Status](https://img.shields.io/coveralls/github/garbados/p2p-social-bookmarking/master.svg?style=flat-square)](https://coveralls.io/github/garbados/p2p-social-bookmarking?branch=master)
+[![Stability](https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square)](https://nodejs.org/api/documentation.html#documentation_stability_index)
+[![JS Standard Style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
+
 *Working title. Cutesy moniker TBD.*
 
 A browser application for archiving, searching, and sharing bookmarks. At least, that's the goal. This project is a work in progress and will update accordingly as it develops. Many of the links in the document are still TODO so don't be surprised when they don't work.
