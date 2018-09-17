@@ -79,6 +79,23 @@ function _createClass(Constructor, protoProps, staticProps) {
 
 module.exports = _createClass;
 },{}],6:[function(require,module,exports){
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+},{}],7:[function(require,module,exports){
 function _getPrototypeOf(o) {
   module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
     return o.__proto__ || Object.getPrototypeOf(o);
@@ -87,7 +104,7 @@ function _getPrototypeOf(o) {
 }
 
 module.exports = _getPrototypeOf;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var setPrototypeOf = require("./setPrototypeOf");
 
 function _inherits(subClass, superClass) {
@@ -106,7 +123,7 @@ function _inherits(subClass, superClass) {
 }
 
 module.exports = _inherits;
-},{"./setPrototypeOf":12}],8:[function(require,module,exports){
+},{"./setPrototypeOf":14}],9:[function(require,module,exports){
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     default: obj
@@ -114,7 +131,7 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 function _iterableToArrayLimit(arr, i) {
   var _arr = [];
   var _n = true;
@@ -142,13 +159,36 @@ function _iterableToArrayLimit(arr, i) {
 }
 
 module.exports = _iterableToArrayLimit;
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
 module.exports = _nonIterableRest;
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
+var defineProperty = require("./defineProperty");
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+},{"./defineProperty":6}],13:[function(require,module,exports){
 var _typeof = require("../helpers/typeof");
 
 var assertThisInitialized = require("./assertThisInitialized");
@@ -162,7 +202,7 @@ function _possibleConstructorReturn(self, call) {
 }
 
 module.exports = _possibleConstructorReturn;
-},{"../helpers/typeof":14,"./assertThisInitialized":2}],12:[function(require,module,exports){
+},{"../helpers/typeof":16,"./assertThisInitialized":2}],14:[function(require,module,exports){
 function _setPrototypeOf(o, p) {
   module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
     o.__proto__ = p;
@@ -173,7 +213,7 @@ function _setPrototypeOf(o, p) {
 }
 
 module.exports = _setPrototypeOf;
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 var arrayWithHoles = require("./arrayWithHoles");
 
 var iterableToArrayLimit = require("./iterableToArrayLimit");
@@ -185,7 +225,7 @@ function _slicedToArray(arr, i) {
 }
 
 module.exports = _slicedToArray;
-},{"./arrayWithHoles":1,"./iterableToArrayLimit":9,"./nonIterableRest":10}],14:[function(require,module,exports){
+},{"./arrayWithHoles":1,"./iterableToArrayLimit":10,"./nonIterableRest":11}],16:[function(require,module,exports){
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
 function _typeof(obj) {
@@ -203,7 +243,7 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -242,7 +282,7 @@ if (hadRuntime) {
   }
 }
 
-},{"./runtime":16}],16:[function(require,module,exports){
+},{"./runtime":18}],18:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -965,10 +1005,10 @@ if (hadRuntime) {
   })() || Function("return this")()
 );
 
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":15}],18:[function(require,module,exports){
+},{"regenerator-runtime":17}],20:[function(require,module,exports){
 'use strict';
 
 module.exports = argsArray;
@@ -988,7 +1028,7 @@ function argsArray(fun) {
     }
   };
 }
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1513,7 +1553,7 @@ function functionBindPolyfill(context) {
   };
 }
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1569,7 +1609,7 @@ var supportsGoWithoutReloadUsingHash = exports.supportsGoWithoutReloadUsingHash 
 var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isExtraneousPopstateEvent(event) {
   return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
 };
-},{}],21:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1648,7 +1688,7 @@ var createLocation = exports.createLocation = function createLocation(path, stat
 var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a, b) {
   return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && (0, _valueEqual2.default)(a.state, b.state);
 };
-},{"./PathUtils":22,"resolve-pathname":56,"value-equal":61}],22:[function(require,module,exports){
+},{"./PathUtils":24,"resolve-pathname":60,"value-equal":65}],24:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -1710,7 +1750,7 @@ var createPath = exports.createPath = function createPath(location) {
 
   return path;
 };
-},{}],23:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -2035,7 +2075,7 @@ var createHashHistory = function createHashHistory() {
 };
 
 exports.default = createHashHistory;
-},{"./DOMUtils":20,"./LocationUtils":21,"./PathUtils":22,"./createTransitionManager":24,"invariant":27,"warning":63}],24:[function(require,module,exports){
+},{"./DOMUtils":22,"./LocationUtils":23,"./PathUtils":24,"./createTransitionManager":26,"invariant":29,"warning":67}],26:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -2121,7 +2161,7 @@ var createTransitionManager = function createTransitionManager() {
 };
 
 exports.default = createTransitionManager;
-},{"warning":63}],25:[function(require,module,exports){
+},{"warning":67}],27:[function(require,module,exports){
 (function (global){
 'use strict';
 var Mutation = global.MutationObserver || global.WebKitMutationObserver;
@@ -2194,7 +2234,7 @@ function immediate(task) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -2219,7 +2259,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 (function (process){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -2272,7 +2312,1859 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
-},{"_process":55}],28:[function(require,module,exports){
+},{"_process":59}],30:[function(require,module,exports){
+(function (global){
+/**
+ * Lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright JS Foundation and other contributors <https://js.foundation/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+
+/** Used to stand-in for `undefined` hash values. */
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    asyncTag = '[object AsyncFunction]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    nullTag = '[object Null]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    proxyTag = '[object Proxy]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    undefinedTag = '[object Undefined]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/7.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/** Used to identify `toStringTag` values of typed arrays. */
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag] = typedArrayTags[arrayTag] =
+typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+typedArrayTags[errorTag] = typedArrayTags[funcTag] =
+typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+typedArrayTags[setTag] = typedArrayTags[stringTag] =
+typedArrayTags[weakMapTag] = false;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = (function() {
+  try {
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}());
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * A specialized version of `_.filter` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {Array} Returns the new filtered array.
+ */
+function arrayFilter(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value;
+    }
+  }
+  return result;
+}
+
+/**
+ * Appends the elements of `values` to `array`.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to append.
+ * @returns {Array} Returns `array`.
+ */
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+
+/**
+ * A specialized version of `_.some` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} predicate The function invoked per iteration.
+ * @returns {boolean} Returns `true` if any element passes the predicate check,
+ *  else `false`.
+ */
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+
+/**
+ * Checks if a `cache` value for `key` exists.
+ *
+ * @private
+ * @param {Object} cache The cache to query.
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function cacheHas(cache, key) {
+  return cache.has(key);
+}
+
+/**
+ * Gets the value at `key` of `object`.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {string} key The key of the property to get.
+ * @returns {*} Returns the property value.
+ */
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+
+  map.forEach(function(value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+
+  set.forEach(function(value) {
+    result[++index] = value;
+  });
+  return result;
+}
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype,
+    funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to detect overreaching core-js shims. */
+var coreJsData = root['__core-js_shared__'];
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect methods masquerading as native. */
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/** Built-in value references. */
+var Buffer = moduleExports ? root.Buffer : undefined,
+    Symbol = root.Symbol,
+    Uint8Array = root.Uint8Array,
+    propertyIsEnumerable = objectProto.propertyIsEnumerable,
+    splice = arrayProto.splice,
+    symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeGetSymbols = Object.getOwnPropertySymbols,
+    nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined,
+    nativeKeys = overArg(Object.keys, Object);
+
+/* Built-in method references that are verified to be native. */
+var DataView = getNative(root, 'DataView'),
+    Map = getNative(root, 'Map'),
+    Promise = getNative(root, 'Promise'),
+    Set = getNative(root, 'Set'),
+    WeakMap = getNative(root, 'WeakMap'),
+    nativeCreate = getNative(Object, 'create');
+
+/** Used to detect maps, sets, and weakmaps. */
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+
+/** Used to convert symbols to primitives and strings. */
+var symbolProto = Symbol ? Symbol.prototype : undefined,
+    symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+
+/**
+ * Creates a hash object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the hash.
+ *
+ * @private
+ * @name clear
+ * @memberOf Hash
+ */
+function hashClear() {
+  this.__data__ = nativeCreate ? nativeCreate(null) : {};
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the hash.
+ *
+ * @private
+ * @name delete
+ * @memberOf Hash
+ * @param {Object} hash The hash to modify.
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+/**
+ * Gets the hash value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Hash
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function hashGet(key) {
+  var data = this.__data__;
+  if (nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty.call(data, key) ? data[key] : undefined;
+}
+
+/**
+ * Checks if a hash value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Hash
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function hashHas(key) {
+  var data = this.__data__;
+  return nativeCreate ? (data[key] !== undefined) : hasOwnProperty.call(data, key);
+}
+
+/**
+ * Sets the hash `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Hash
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the hash instance.
+ */
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (nativeCreate && value === undefined) ? HASH_UNDEFINED : value;
+  return this;
+}
+
+// Add methods to `Hash`.
+Hash.prototype.clear = hashClear;
+Hash.prototype['delete'] = hashDelete;
+Hash.prototype.get = hashGet;
+Hash.prototype.has = hashHas;
+Hash.prototype.set = hashSet;
+
+/**
+ * Creates an list cache object.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the list cache.
+ *
+ * @private
+ * @name clear
+ * @memberOf ListCache
+ */
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the list cache.
+ *
+ * @private
+ * @name delete
+ * @memberOf ListCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+
+/**
+ * Gets the list cache value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf ListCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  return index < 0 ? undefined : data[index][1];
+}
+
+/**
+ * Checks if a list cache value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf ListCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function listCacheHas(key) {
+  return assocIndexOf(this.__data__, key) > -1;
+}
+
+/**
+ * Sets the list cache `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf ListCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the list cache instance.
+ */
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = assocIndexOf(data, key);
+
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+
+// Add methods to `ListCache`.
+ListCache.prototype.clear = listCacheClear;
+ListCache.prototype['delete'] = listCacheDelete;
+ListCache.prototype.get = listCacheGet;
+ListCache.prototype.has = listCacheHas;
+ListCache.prototype.set = listCacheSet;
+
+/**
+ * Creates a map cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+
+/**
+ * Removes all key-value entries from the map.
+ *
+ * @private
+ * @name clear
+ * @memberOf MapCache
+ */
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new Hash,
+    'map': new (Map || ListCache),
+    'string': new Hash
+  };
+}
+
+/**
+ * Removes `key` and its value from the map.
+ *
+ * @private
+ * @name delete
+ * @memberOf MapCache
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function mapCacheDelete(key) {
+  var result = getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+
+/**
+ * Gets the map value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf MapCache
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function mapCacheGet(key) {
+  return getMapData(this, key).get(key);
+}
+
+/**
+ * Checks if a map value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf MapCache
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function mapCacheHas(key) {
+  return getMapData(this, key).has(key);
+}
+
+/**
+ * Sets the map `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf MapCache
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the map cache instance.
+ */
+function mapCacheSet(key, value) {
+  var data = getMapData(this, key),
+      size = data.size;
+
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+
+// Add methods to `MapCache`.
+MapCache.prototype.clear = mapCacheClear;
+MapCache.prototype['delete'] = mapCacheDelete;
+MapCache.prototype.get = mapCacheGet;
+MapCache.prototype.has = mapCacheHas;
+MapCache.prototype.set = mapCacheSet;
+
+/**
+ *
+ * Creates an array cache object to store unique values.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [values] The values to cache.
+ */
+function SetCache(values) {
+  var index = -1,
+      length = values == null ? 0 : values.length;
+
+  this.__data__ = new MapCache;
+  while (++index < length) {
+    this.add(values[index]);
+  }
+}
+
+/**
+ * Adds `value` to the array cache.
+ *
+ * @private
+ * @name add
+ * @memberOf SetCache
+ * @alias push
+ * @param {*} value The value to cache.
+ * @returns {Object} Returns the cache instance.
+ */
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED);
+  return this;
+}
+
+/**
+ * Checks if `value` is in the array cache.
+ *
+ * @private
+ * @name has
+ * @memberOf SetCache
+ * @param {*} value The value to search for.
+ * @returns {number} Returns `true` if `value` is found, else `false`.
+ */
+function setCacheHas(value) {
+  return this.__data__.has(value);
+}
+
+// Add methods to `SetCache`.
+SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+SetCache.prototype.has = setCacheHas;
+
+/**
+ * Creates a stack cache object to store key-value pairs.
+ *
+ * @private
+ * @constructor
+ * @param {Array} [entries] The key-value pairs to cache.
+ */
+function Stack(entries) {
+  var data = this.__data__ = new ListCache(entries);
+  this.size = data.size;
+}
+
+/**
+ * Removes all key-value entries from the stack.
+ *
+ * @private
+ * @name clear
+ * @memberOf Stack
+ */
+function stackClear() {
+  this.__data__ = new ListCache;
+  this.size = 0;
+}
+
+/**
+ * Removes `key` and its value from the stack.
+ *
+ * @private
+ * @name delete
+ * @memberOf Stack
+ * @param {string} key The key of the value to remove.
+ * @returns {boolean} Returns `true` if the entry was removed, else `false`.
+ */
+function stackDelete(key) {
+  var data = this.__data__,
+      result = data['delete'](key);
+
+  this.size = data.size;
+  return result;
+}
+
+/**
+ * Gets the stack value for `key`.
+ *
+ * @private
+ * @name get
+ * @memberOf Stack
+ * @param {string} key The key of the value to get.
+ * @returns {*} Returns the entry value.
+ */
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+
+/**
+ * Checks if a stack value for `key` exists.
+ *
+ * @private
+ * @name has
+ * @memberOf Stack
+ * @param {string} key The key of the entry to check.
+ * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
+ */
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+
+/**
+ * Sets the stack `key` to `value`.
+ *
+ * @private
+ * @name set
+ * @memberOf Stack
+ * @param {string} key The key of the value to set.
+ * @param {*} value The value to set.
+ * @returns {Object} Returns the stack cache instance.
+ */
+function stackSet(key, value) {
+  var data = this.__data__;
+  if (data instanceof ListCache) {
+    var pairs = data.__data__;
+    if (!Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+      pairs.push([key, value]);
+      this.size = ++data.size;
+      return this;
+    }
+    data = this.__data__ = new MapCache(pairs);
+  }
+  data.set(key, value);
+  this.size = data.size;
+  return this;
+}
+
+// Add methods to `Stack`.
+Stack.prototype.clear = stackClear;
+Stack.prototype['delete'] = stackDelete;
+Stack.prototype.get = stackGet;
+Stack.prototype.has = stackHas;
+Stack.prototype.set = stackSet;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+           // Safari 9 has enumerable `arguments.length` in strict mode.
+           key == 'length' ||
+           // Node.js 0.10 has enumerable non-index properties on buffers.
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           // Skip index properties.
+           isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * Gets the index at which the `key` is found in `array` of key-value pairs.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} key The key to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+
+/**
+ * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
+ * `keysFunc` and `symbolsFunc` to get the enumerable property names and
+ * symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @param {Function} symbolsFunc The function to get the symbols of `object`.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+}
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? getRawTag(value)
+    : objectToString(value);
+}
+
+/**
+ * The base implementation of `_.isArguments`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ */
+function baseIsArguments(value) {
+  return isObjectLike(value) && baseGetTag(value) == argsTag;
+}
+
+/**
+ * The base implementation of `_.isEqual` which supports partial comparisons
+ * and tracks traversed objects.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {boolean} bitmask The bitmask flags.
+ *  1 - Unordered comparison
+ *  2 - Partial comparison
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+function baseIsEqual(value, other, bitmask, customizer, stack) {
+  if (value === other) {
+    return true;
+  }
+  if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+    return value !== value && other !== other;
+  }
+  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+}
+
+/**
+ * A specialized version of `baseIsEqual` for arrays and objects which performs
+ * deep comparisons and tracks traversed objects enabling objects with circular
+ * references to be compared.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} [stack] Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+  var objIsArr = isArray(object),
+      othIsArr = isArray(other),
+      objTag = objIsArr ? arrayTag : getTag(object),
+      othTag = othIsArr ? arrayTag : getTag(other);
+
+  objTag = objTag == argsTag ? objectTag : objTag;
+  othTag = othTag == argsTag ? objectTag : othTag;
+
+  var objIsObj = objTag == objectTag,
+      othIsObj = othTag == objectTag,
+      isSameTag = objTag == othTag;
+
+  if (isSameTag && isBuffer(object)) {
+    if (!isBuffer(other)) {
+      return false;
+    }
+    objIsArr = true;
+    objIsObj = false;
+  }
+  if (isSameTag && !objIsObj) {
+    stack || (stack = new Stack);
+    return (objIsArr || isTypedArray(object))
+      ? equalArrays(object, other, bitmask, customizer, equalFunc, stack)
+      : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+  }
+  if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
+    var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty.call(other, '__wrapped__');
+
+    if (objIsWrapped || othIsWrapped) {
+      var objUnwrapped = objIsWrapped ? object.value() : object,
+          othUnwrapped = othIsWrapped ? other.value() : other;
+
+      stack || (stack = new Stack);
+      return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+    }
+  }
+  if (!isSameTag) {
+    return false;
+  }
+  stack || (stack = new Stack);
+  return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+}
+
+/**
+ * The base implementation of `_.isNative` without bad shim checks.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ */
+function baseIsNative(value) {
+  if (!isObject(value) || isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(toSource(value));
+}
+
+/**
+ * The base implementation of `_.isTypedArray` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ */
+function baseIsTypedArray(value) {
+  return isObjectLike(value) &&
+    isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+}
+
+/**
+ * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ */
+function baseKeys(object) {
+  if (!isPrototype(object)) {
+    return nativeKeys(object);
+  }
+  var result = [];
+  for (var key in Object(object)) {
+    if (hasOwnProperty.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(array);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var index = -1,
+      result = true,
+      seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new SetCache : undefined;
+
+  stack.set(array, other);
+  stack.set(other, array);
+
+  // Ignore non-index properties.
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, arrValue, index, other, array, stack)
+        : customizer(arrValue, othValue, index, array, other, stack);
+    }
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+      result = false;
+      break;
+    }
+    // Recursively compare arrays (susceptible to call stack limits).
+    if (seen) {
+      if (!arraySome(other, function(othValue, othIndex) {
+            if (!cacheHas(seen, othIndex) &&
+                (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+              return seen.push(othIndex);
+            }
+          })) {
+        result = false;
+        break;
+      }
+    } else if (!(
+          arrValue === othValue ||
+            equalFunc(arrValue, othValue, bitmask, customizer, stack)
+        )) {
+      result = false;
+      break;
+    }
+  }
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+
+/**
+ * A specialized version of `baseIsEqualDeep` for comparing objects of
+ * the same `toStringTag`.
+ *
+ * **Note:** This function only supports comparing values with tags of
+ * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {string} tag The `toStringTag` of the objects to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+  switch (tag) {
+    case dataViewTag:
+      if ((object.byteLength != other.byteLength) ||
+          (object.byteOffset != other.byteOffset)) {
+        return false;
+      }
+      object = object.buffer;
+      other = other.buffer;
+
+    case arrayBufferTag:
+      if ((object.byteLength != other.byteLength) ||
+          !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+        return false;
+      }
+      return true;
+
+    case boolTag:
+    case dateTag:
+    case numberTag:
+      // Coerce booleans to `1` or `0` and dates to milliseconds.
+      // Invalid dates are coerced to `NaN`.
+      return eq(+object, +other);
+
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+
+    case regexpTag:
+    case stringTag:
+      // Coerce regexes to strings and treat strings, primitives and objects,
+      // as equal. See http://www.ecma-international.org/ecma-262/7.0/#sec-regexp.prototype.tostring
+      // for more details.
+      return object == (other + '');
+
+    case mapTag:
+      var convert = mapToArray;
+
+    case setTag:
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG;
+      convert || (convert = setToArray);
+
+      if (object.size != other.size && !isPartial) {
+        return false;
+      }
+      // Assume cyclic values are equal.
+      var stacked = stack.get(object);
+      if (stacked) {
+        return stacked == other;
+      }
+      bitmask |= COMPARE_UNORDERED_FLAG;
+
+      // Recursively compare objects (susceptible to call stack limits).
+      stack.set(object, other);
+      var result = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+      stack['delete'](object);
+      return result;
+
+    case symbolTag:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
+      }
+  }
+  return false;
+}
+
+/**
+ * A specialized version of `baseIsEqualDeep` for objects with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Object} object The object to compare.
+ * @param {Object} other The other object to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `object` and `other` objects.
+ * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
+ */
+function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      objProps = getAllKeys(object),
+      objLength = objProps.length,
+      othProps = getAllKeys(other),
+      othLength = othProps.length;
+
+  if (objLength != othLength && !isPartial) {
+    return false;
+  }
+  var index = objLength;
+  while (index--) {
+    var key = objProps[index];
+    if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+      return false;
+    }
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(object);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var result = true;
+  stack.set(object, other);
+  stack.set(other, object);
+
+  var skipCtor = isPartial;
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key];
+
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, objValue, key, other, object, stack)
+        : customizer(objValue, othValue, key, object, other, stack);
+    }
+    // Recursively compare objects (susceptible to call stack limits).
+    if (!(compared === undefined
+          ? (objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack))
+          : compared
+        )) {
+      result = false;
+      break;
+    }
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+  if (result && !skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor;
+
+    // Non `Object` object instances with different constructors are not equal.
+    if (objCtor != othCtor &&
+        ('constructor' in object && 'constructor' in other) &&
+        !(typeof objCtor == 'function' && objCtor instanceof objCtor &&
+          typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      result = false;
+    }
+  }
+  stack['delete'](object);
+  stack['delete'](other);
+  return result;
+}
+
+/**
+ * Creates an array of own enumerable property names and symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function getAllKeys(object) {
+  return baseGetAllKeys(object, keys, getSymbols);
+}
+
+/**
+ * Gets the data for `map`.
+ *
+ * @private
+ * @param {Object} map The map to query.
+ * @param {string} key The reference key.
+ * @returns {*} Returns the map data.
+ */
+function getMapData(map, key) {
+  var data = map.__data__;
+  return isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+
+/**
+ * Gets the native function at `key` of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {string} key The key of the method to get.
+ * @returns {*} Returns the function if it's native, else `undefined`.
+ */
+function getNative(object, key) {
+  var value = getValue(object, key);
+  return baseIsNative(value) ? value : undefined;
+}
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+/**
+ * Creates an array of the own enumerable symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+var getSymbols = !nativeGetSymbols ? stubArray : function(object) {
+  if (object == null) {
+    return [];
+  }
+  object = Object(object);
+  return arrayFilter(nativeGetSymbols(object), function(symbol) {
+    return propertyIsEnumerable.call(object, symbol);
+  });
+};
+
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+var getTag = baseGetTag;
+
+// Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
+if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
+    (Map && getTag(new Map) != mapTag) ||
+    (Promise && getTag(Promise.resolve()) != promiseTag) ||
+    (Set && getTag(new Set) != setTag) ||
+    (WeakMap && getTag(new WeakMap) != weakMapTag)) {
+  getTag = function(value) {
+    var result = baseGetTag(value),
+        Ctor = result == objectTag ? value.constructor : undefined,
+        ctorString = Ctor ? toSource(Ctor) : '';
+
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString: return dataViewTag;
+        case mapCtorString: return mapTag;
+        case promiseCtorString: return promiseTag;
+        case setCtorString: return setTag;
+        case weakMapCtorString: return weakMapTag;
+      }
+    }
+    return result;
+  };
+}
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length &&
+    (typeof value == 'number' || reIsUint.test(value)) &&
+    (value > -1 && value % 1 == 0 && value < length);
+}
+
+/**
+ * Checks if `value` is suitable for use as unique object key.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is suitable, else `false`.
+ */
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+
+/**
+ * Checks if `func` has its source masked.
+ *
+ * @private
+ * @param {Function} func The function to check.
+ * @returns {boolean} Returns `true` if `func` is masked, else `false`.
+ */
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+
+/**
+ * Checks if `value` is likely a prototype object.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+ */
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+  return value === proto;
+}
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+/**
+ * Performs a
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * comparison between two values to determine if they are equivalent.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.eq(object, object);
+ * // => true
+ *
+ * _.eq(object, other);
+ * // => false
+ *
+ * _.eq('a', 'a');
+ * // => true
+ *
+ * _.eq('a', Object('a'));
+ * // => false
+ *
+ * _.eq(NaN, NaN);
+ * // => true
+ */
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
+  return isObjectLike(value) && hasOwnProperty.call(value, 'callee') &&
+    !propertyIsEnumerable.call(value, 'callee');
+};
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+/**
+ * Checks if `value` is a buffer.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+ * @example
+ *
+ * _.isBuffer(new Buffer(2));
+ * // => true
+ *
+ * _.isBuffer(new Uint8Array(2));
+ * // => false
+ */
+var isBuffer = nativeIsBuffer || stubFalse;
+
+/**
+ * Performs a deep comparison between two values to determine if they are
+ * equivalent.
+ *
+ * **Note:** This method supports comparing arrays, array buffers, booleans,
+ * date objects, error objects, maps, numbers, `Object` objects, regexes,
+ * sets, strings, symbols, and typed arrays. `Object` objects are compared
+ * by their own, not inherited, enumerable properties. Functions and DOM
+ * nodes are compared by strict equality, i.e. `===`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.isEqual(object, other);
+ * // => true
+ *
+ * object === other;
+ * // => false
+ */
+function isEqual(value, other) {
+  return baseIsEqual(value, other);
+}
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+/**
+ * Creates an array of the own enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects. See the
+ * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
+ * for more details.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keys(new Foo);
+ * // => ['a', 'b'] (iteration order is not guaranteed)
+ *
+ * _.keys('hi');
+ * // => ['0', '1']
+ */
+function keys(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+}
+
+/**
+ * This method returns a new empty array.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {Array} Returns the new empty array.
+ * @example
+ *
+ * var arrays = _.times(2, _.stubArray);
+ *
+ * console.log(arrays);
+ * // => [[], []]
+ *
+ * console.log(arrays[0] === arrays[1]);
+ * // => false
+ */
+function stubArray() {
+  return [];
+}
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = isEqual;
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],31:[function(require,module,exports){
 (function (global){
 /**
  * marked - a markdown parser
@@ -3664,7 +5556,7 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
 })(this || (typeof window !== 'undefined' ? window : global));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],29:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 
 var pouchdbUtils = require('pouchdb-utils');
@@ -4729,7 +6621,7 @@ function createAbstractMapReduce(localDocName, mapper, reducer, ddocValidator) {
 
 module.exports = createAbstractMapReduce;
 
-},{"pouchdb-binary-utils":30,"pouchdb-collate":31,"pouchdb-collections":32,"pouchdb-errors":33,"pouchdb-fetch":34,"pouchdb-mapreduce-utils":36,"pouchdb-md5":37,"pouchdb-utils":39}],30:[function(require,module,exports){
+},{"pouchdb-binary-utils":33,"pouchdb-collate":34,"pouchdb-collections":35,"pouchdb-errors":36,"pouchdb-fetch":37,"pouchdb-mapreduce-utils":39,"pouchdb-md5":40,"pouchdb-utils":42}],33:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -4856,7 +6748,7 @@ exports.readAsArrayBuffer = readAsArrayBuffer;
 exports.readAsBinaryString = readAsBinaryString;
 exports.typedBuffer = typedBuffer;
 
-},{}],31:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5243,7 +7135,7 @@ exports.normalizeKey = normalizeKey;
 exports.toIndexableString = toIndexableString;
 exports.parseIndexableString = parseIndexableString;
 
-},{}],32:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5345,7 +7237,7 @@ function supportsMapAndSet() {
   }
 }
 
-},{}],33:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5472,7 +7364,7 @@ exports.INVALID_URL = INVALID_URL;
 exports.createError = createError;
 exports.generateErrorFromResponse = generateErrorFromResponse;
 
-},{"inherits":26}],34:[function(require,module,exports){
+},{"inherits":28}],37:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5490,7 +7382,7 @@ exports.fetch = f;
 exports.Headers = h;
 exports.AbortController = a;
 
-},{}],35:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -6912,7 +8804,7 @@ plugin.deleteIndex = pouchdbUtils.toPromise(function (indexDef, callback) {
 
 module.exports = plugin;
 
-},{"pouchdb-abstract-mapreduce":29,"pouchdb-collate":31,"pouchdb-errors":33,"pouchdb-fetch":34,"pouchdb-md5":37,"pouchdb-selector-core":38,"pouchdb-utils":39}],36:[function(require,module,exports){
+},{"pouchdb-abstract-mapreduce":32,"pouchdb-collate":34,"pouchdb-errors":36,"pouchdb-fetch":37,"pouchdb-md5":40,"pouchdb-selector-core":41,"pouchdb-utils":42}],39:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7040,7 +8932,7 @@ exports.QueryParseError = QueryParseError;
 exports.NotFoundError = NotFoundError;
 exports.BuiltInError = BuiltInError;
 
-},{"argsarray":18,"inherits":26,"pouchdb-collections":32,"pouchdb-utils":39}],37:[function(require,module,exports){
+},{"argsarray":20,"inherits":28,"pouchdb-collections":35,"pouchdb-utils":42}],40:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -7127,7 +9019,7 @@ exports.binaryMd5 = binaryMd5;
 exports.stringMd5 = stringMd5;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"pouchdb-binary-utils":30,"spark-md5":57}],38:[function(require,module,exports){
+},{"pouchdb-binary-utils":33,"spark-md5":61}],41:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7700,7 +9592,7 @@ exports.setFieldInDoc = setFieldInDoc;
 exports.compare = compare;
 exports.parseField = parseField;
 
-},{"pouchdb-collate":31,"pouchdb-utils":39}],39:[function(require,module,exports){
+},{"pouchdb-collate":34,"pouchdb-utils":42}],42:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8504,7 +10396,7 @@ exports.toPromise = toPromise;
 exports.upsert = upsert;
 exports.uuid = uuid;
 
-},{"argsarray":18,"events":19,"immediate":25,"inherits":26,"pouchdb-collections":32,"pouchdb-errors":33,"pouchdb-md5":37,"pouchdb-utils":39,"uuid":40}],40:[function(require,module,exports){
+},{"argsarray":20,"events":21,"immediate":27,"inherits":28,"pouchdb-collections":35,"pouchdb-errors":36,"pouchdb-md5":40,"pouchdb-utils":42,"uuid":43}],43:[function(require,module,exports){
 var v1 = require('./v1');
 var v4 = require('./v4');
 
@@ -8514,7 +10406,7 @@ uuid.v4 = v4;
 
 module.exports = uuid;
 
-},{"./v1":43,"./v4":44}],41:[function(require,module,exports){
+},{"./v1":46,"./v4":47}],44:[function(require,module,exports){
 /**
  * Convert array of 16 byte values to UUID string format of the form:
  * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
@@ -8539,7 +10431,7 @@ function bytesToUuid(buf, offset) {
 
 module.exports = bytesToUuid;
 
-},{}],42:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -8573,7 +10465,7 @@ if (getRandomValues) {
   };
 }
 
-},{}],43:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 var rng = require('./lib/rng');
 var bytesToUuid = require('./lib/bytesToUuid');
 
@@ -8684,7 +10576,7 @@ function v1(options, buf, offset) {
 
 module.exports = v1;
 
-},{"./lib/bytesToUuid":41,"./lib/rng":42}],44:[function(require,module,exports){
+},{"./lib/bytesToUuid":44,"./lib/rng":45}],47:[function(require,module,exports){
 var rng = require('./lib/rng');
 var bytesToUuid = require('./lib/bytesToUuid');
 
@@ -8715,7 +10607,7 @@ function v4(options, buf, offset) {
 
 module.exports = v4;
 
-},{"./lib/bytesToUuid":41,"./lib/rng":42}],45:[function(require,module,exports){
+},{"./lib/bytesToUuid":44,"./lib/rng":45}],48:[function(require,module,exports){
 (function (process,global){
 'use strict';
 
@@ -18930,17 +20822,17 @@ PouchDB.plugin(IDBPouch)
 module.exports = PouchDB;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":55,"argsarray":18,"events":19,"immediate":25,"inherits":26,"spark-md5":57,"uuid":46,"vuvuzela":62}],46:[function(require,module,exports){
-arguments[4][40][0].apply(exports,arguments)
-},{"./v1":49,"./v4":50,"dup":40}],47:[function(require,module,exports){
-arguments[4][41][0].apply(exports,arguments)
-},{"dup":41}],48:[function(require,module,exports){
-arguments[4][42][0].apply(exports,arguments)
-},{"dup":42}],49:[function(require,module,exports){
+},{"_process":59,"argsarray":20,"events":21,"immediate":27,"inherits":28,"spark-md5":61,"uuid":49,"vuvuzela":66}],49:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"./lib/bytesToUuid":47,"./lib/rng":48,"dup":43}],50:[function(require,module,exports){
+},{"./v1":52,"./v4":53,"dup":43}],50:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"./lib/bytesToUuid":47,"./lib/rng":48,"dup":44}],51:[function(require,module,exports){
+},{"dup":44}],51:[function(require,module,exports){
+arguments[4][45][0].apply(exports,arguments)
+},{"dup":45}],52:[function(require,module,exports){
+arguments[4][46][0].apply(exports,arguments)
+},{"./lib/bytesToUuid":50,"./lib/rng":51,"dup":46}],53:[function(require,module,exports){
+arguments[4][47][0].apply(exports,arguments)
+},{"./lib/bytesToUuid":50,"./lib/rng":51,"dup":47}],54:[function(require,module,exports){
 var preact = require('preact')
 var Markup = require('preact-markup')
 var marked = require('marked')
@@ -18971,7 +20863,7 @@ function Markdown(props, opts) {
   }
 }
 
-},{"marked":28,"preact":54,"preact-markup":52}],52:[function(require,module,exports){
+},{"marked":31,"preact":58,"preact-markup":55}],55:[function(require,module,exports){
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('preact')) :
   typeof define === 'function' && define.amd ? define(['preact'], factory) :
@@ -19267,11 +21159,93 @@ function Markdown(props, opts) {
 }));
 
 
-},{"preact":54}],53:[function(require,module,exports){
+},{"preact":58}],56:[function(require,module,exports){
 !function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e(require("preact")):"function"==typeof define&&define.amd?define(["preact"],e):t.preactRouter=e(t.preact)}(this,function(t){function e(t,e){for(var n in e)t[n]=e[n];return t}function n(t,e,n){var r,o=/(?:\?([^#]*))?(#.*)?$/,u=t.match(o),a={};if(u&&u[1])for(var p=u[1].split("&"),c=0;c<p.length;c++){var f=p[c].split("=");a[decodeURIComponent(f[0])]=decodeURIComponent(f.slice(1).join("="))}t=i(t.replace(o,"")),e=i(e||"");for(var l=Math.max(t.length,e.length),s=0;s<l;s++)if(e[s]&&":"===e[s].charAt(0)){var h=e[s].replace(/(^\:|[+*?]+$)/g,""),d=(e[s].match(/[+*?]+$/)||C)[0]||"",g=~d.indexOf("+"),m=~d.indexOf("*"),y=t[s]||"";if(!y&&!m&&(d.indexOf("?")<0||g)){r=!1;break}if(a[h]=decodeURIComponent(y),g||m){a[h]=t.slice(s).map(decodeURIComponent).join("/");break}}else if(e[s]!==t[s]){r=!1;break}return(!0===n.default||!1!==r)&&a}function r(t,e){return t.rank<e.rank?1:t.rank>e.rank?-1:t.index-e.index}function o(t,e){return t.index=e,t.rank=p(t),t.attributes}function i(t){return t.replace(/(^\/+|\/+$)/g,"").split("/")}function u(t){return":"==t.charAt(0)?1+"*+?".indexOf(t.charAt(t.length-1))||4:5}function a(t){return i(t).map(u).join("")}function p(t){return t.attributes.default?0:a(t.attributes.path)}function c(t){return null!=t.__preactattr_||"undefined"!=typeof Symbol&&null!=t[Symbol.for("preactattr")]}function f(t,e){void 0===e&&(e="push"),R&&R[e]?R[e](t):"undefined"!=typeof history&&history[e+"State"]&&history[e+"State"](null,null,t)}function l(){var t;return t=R&&R.location?R.location:R&&R.getCurrentLocation?R.getCurrentLocation():"undefined"!=typeof location?location:x,""+(t.pathname||"")+(t.search||"")}function s(t,e){return void 0===e&&(e=!1),"string"!=typeof t&&t.url&&(e=t.replace,t=t.url),h(t)&&f(t,e?"replace":"push"),d(t)}function h(t){for(var e=U.length;e--;)if(U[e].canRoute(t))return!0;return!1}function d(t){for(var e=!1,n=0;n<U.length;n++)!0===U[n].routeTo(t)&&(e=!0);for(var r=k.length;r--;)k[r](t);return e}function g(t){if(t&&t.getAttribute){var e=t.getAttribute("href"),n=t.getAttribute("target");if(e&&e.match(/^\//g)&&(!n||n.match(/^_?self$/i)))return s(e)}}function m(t){if(0==t.button)return g(t.currentTarget||t.target||this),y(t)}function y(t){return t&&(t.stopImmediatePropagation&&t.stopImmediatePropagation(),t.stopPropagation&&t.stopPropagation(),t.preventDefault()),!1}function v(t){if(!(t.ctrlKey||t.metaKey||t.altKey||t.shiftKey||0!==t.button)){var e=t.target;do{if("A"===(e.nodeName+"").toUpperCase()&&e.getAttribute("href")&&c(e)){if(e.hasAttribute("native"))return;if(g(e))return y(t)}}while(e=e.parentNode)}}function b(){_||("function"==typeof addEventListener&&(R||addEventListener("popstate",function(){d(l())}),addEventListener("click",v)),_=!0)}var C={},R=null,U=[],k=[],x={},_=!1,A=function(i){function u(t){i.call(this,t),t.history&&(R=t.history),this.state={url:t.url||l()},b()}return i&&(u.__proto__=i),u.prototype=Object.create(i&&i.prototype),u.prototype.constructor=u,u.prototype.shouldComponentUpdate=function(t){return!0!==t.static||(t.url!==this.props.url||t.onChange!==this.props.onChange)},u.prototype.canRoute=function(t){return this.getMatchingChildren(this.props.children,t,!1).length>0},u.prototype.routeTo=function(t){return this._didRoute=!1,this.setState({url:t}),this.updating?this.canRoute(t):(this.forceUpdate(),this._didRoute)},u.prototype.componentWillMount=function(){U.push(this),this.updating=!0},u.prototype.componentDidMount=function(){var t=this;R&&(this.unlisten=R.listen(function(e){t.routeTo(""+(e.pathname||"")+(e.search||""))})),this.updating=!1},u.prototype.componentWillUnmount=function(){"function"==typeof this.unlisten&&this.unlisten(),U.splice(U.indexOf(this),1)},u.prototype.componentWillUpdate=function(){this.updating=!0},u.prototype.componentDidUpdate=function(){this.updating=!1},u.prototype.getMatchingChildren=function(i,u,a){return i.filter(o).sort(r).map(function(r){var o=n(u,r.attributes.path,r.attributes);if(o){if(!1!==a){var i={url:u,matches:o};return e(i,o),delete i.ref,delete i.key,t.cloneElement(r,i)}return r}}).filter(Boolean)},u.prototype.render=function(t,e){var n=t.children,r=t.onChange,o=e.url,i=this.getMatchingChildren(n,o,!0),u=i[0]||null;this._didRoute=!!u;var a=this.previousUrl;return o!==a&&(this.previousUrl=o,"function"==typeof r&&r({router:this,url:o,previous:a,active:i,current:u})),u},u}(t.Component),I=function(n){return t.h("a",e({onClick:m},n))},L=function(e){return t.h(e.component,e)};return A.subscribers=k,A.getCurrentUrl=l,A.route=s,A.Router=A,A.Route=L,A.Link=I,A});
 
 
-},{"preact":54}],54:[function(require,module,exports){
+},{"preact":58}],57:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Link = exports.Match = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _preact = require('preact');
+
+var _preactRouter = require('preact-router');
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Match = exports.Match = function (_Component) {
+	_inherits(Match, _Component);
+
+	function Match() {
+		var _temp, _this, _ret;
+
+		_classCallCheck(this, Match);
+
+		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+			args[_key] = arguments[_key];
+		}
+
+		return _ret = (_temp = (_this = _possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.update = function (url) {
+			_this.nextUrl = url;
+			_this.setState({});
+		}, _temp), _possibleConstructorReturn(_this, _ret);
+	}
+
+	Match.prototype.componentDidMount = function componentDidMount() {
+		_preactRouter.subscribers.push(this.update);
+	};
+
+	Match.prototype.componentWillUnmount = function componentWillUnmount() {
+		_preactRouter.subscribers.splice(_preactRouter.subscribers.indexOf(this.update) >>> 0, 1);
+	};
+
+	Match.prototype.render = function render(props) {
+		var url = this.nextUrl || (0, _preactRouter.getCurrentUrl)(),
+		    path = url.replace(/\?.+$/, '');
+		this.nextUrl = null;
+		return props.children[0] && props.children[0]({
+			url: url,
+			path: path,
+			matches: path === props.path
+		});
+	};
+
+	return Match;
+}(_preact.Component);
+
+var Link = function Link(_ref) {
+	var activeClassName = _ref.activeClassName,
+	    path = _ref.path,
+	    props = _objectWithoutProperties(_ref, ['activeClassName', 'path']);
+
+	return (0, _preact.h)(
+		Match,
+		{ path: path || props.href },
+		function (_ref2) {
+			var matches = _ref2.matches;
+			return (0, _preact.h)(_preactRouter.Link, _extends({}, props, { 'class': [props.class || props.className, matches && activeClassName].filter(Boolean).join(' ') }));
+		}
+	);
+};
+
+exports.Link = Link;
+exports.default = Match;
+
+Match.Link = Link;
+
+},{"preact":58,"preact-router":56}],58:[function(require,module,exports){
 !function() {
     'use strict';
     function h(nodeName, attributes) {
@@ -19680,7 +21654,7 @@ function Markdown(props, opts) {
     if ('undefined' != typeof module) module.exports = preact; else self.preact = preact;
 }();
 
-},{}],55:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -19866,7 +21840,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],56:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -19941,7 +21915,7 @@ function resolvePathname(to) {
 
 exports.default = resolvePathname;
 module.exports = exports['default'];
-},{}],57:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 (function (factory) {
     if (typeof exports === 'object') {
         // Node/CommonJS
@@ -20694,7 +22668,7 @@ module.exports = exports['default'];
     return SparkMD5;
 }));
 
-},{}],58:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
  * Convert array of 16 byte values to UUID string format of the form:
  * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
@@ -20720,7 +22694,7 @@ function bytesToUuid(buf, offset) {
 
 module.exports = bytesToUuid;
 
-},{}],59:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 // Unique ID creation requires a high quality random # generator.  In the
 // browser this is a little complicated due to unknown quality of Math.random()
 // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -20756,9 +22730,9 @@ if (getRandomValues) {
   };
 }
 
-},{}],60:[function(require,module,exports){
-arguments[4][44][0].apply(exports,arguments)
-},{"./lib/bytesToUuid":58,"./lib/rng":59,"dup":44}],61:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
+arguments[4][47][0].apply(exports,arguments)
+},{"./lib/bytesToUuid":62,"./lib/rng":63,"dup":47}],65:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -20802,7 +22776,7 @@ function valueEqual(a, b) {
 
 exports.default = valueEqual;
 module.exports = exports['default'];
-},{}],62:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 'use strict';
 
 /**
@@ -20977,7 +22951,7 @@ exports.parse = function (str) {
   }
 };
 
-},{}],63:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -21041,7 +23015,7 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
-},{"_process":55}],64:[function(require,module,exports){
+},{"_process":59}],68:[function(require,module,exports){
 module.exports={
   "name": "p2p-social-bookmarking",
   "version": "1.0.0-alpha",
@@ -21049,7 +23023,7 @@ module.exports={
   "main": "./src/js/index.js",
   "scripts": {
     "pretest": "standard",
-    "test": "mocha",
+    "test": "mocha --recursive --require @babel/register",
     "posttest": "npm audit",
     "prebuild": "mkdir -p build",
     "build": "run-p build:*",
@@ -21059,6 +23033,7 @@ module.exports={
     "build:html": "cp src/html/* build",
     "serve": "serve build",
     "start": "run-s build serve",
+    "predev": "npm run build",
     "dev": "run-p dev:* serve",
     "dev:css": "npm run build:css -- --watch",
     "dev:js": "sane 'npm run build:js' src/js",
@@ -21084,6 +23059,7 @@ module.exports={
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@fortawesome/fontawesome-free": "^5.3.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -21100,6 +23076,7 @@ module.exports={
   },
   "dependencies": {
     "history": "^4.7.2",
+    "lodash.isequal": "^4.5.0",
     "pouchdb": "^7.0.0",
     "pouchdb-find": "^7.0.0",
     "preact": "^8.3.1",
@@ -21124,36 +23101,22 @@ module.exports={
       ]
     ]
   },
-  "jest": {
-    "testRegex": "/test/.*\\.js$",
-    "testPathIgnorePatterns": [
-      "/test/helpers/.*\\.js$"
-    ],
-    "collectCoverage": true,
-    "testEnvironment": "node",
-    "verbose": false
-  },
   "standard": {
     "env": {
-      "jest": true
+      "mocha": true
     },
     "globals": [
-      "jest",
-      "expect",
       "describe",
-      "test",
-      "beforeAll",
+      "it",
+      "before",
       "beforeEach",
-      "afterAll",
+      "after",
       "afterEach"
-    ],
-    "ignore": [
-      "couchdb"
     ]
   }
 }
 
-},{}],65:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -21183,13 +23146,13 @@ var _preactRouter = _interopRequireDefault(require("preact-router"));
 
 var _preact = require("preact");
 
+var _bookmarks = _interopRequireDefault(require("./bookmarks"));
+
 var _db = _interopRequireDefault(require("../lib/db"));
 
-var _home = _interopRequireDefault(require("./home"));
+var _match = require("preact-router/match");
 
-var _nav = _interopRequireDefault(require("./nav"));
-
-var _search = _interopRequireDefault(require("./search"));
+var _package = require("../../../package.json");
 
 /* eslint-disable no-unused-vars */
 var App =
@@ -21238,15 +23201,28 @@ function (_Component) {
         "class": 'columns'
       }, (0, _preact.h)("div", {
         "class": 'column is-narrow'
-      }, (0, _preact.h)(_nav.default, null)), (0, _preact.h)("div", {
+      }, (0, _preact.h)("aside", {
+        "class": 'menu'
+      }, (0, _preact.h)("p", {
+        "class": 'menu-label'
+      }, _package.name), (0, _preact.h)("ul", {
+        "class": 'menu-list'
+      }, (0, _preact.h)(_match.Link, {
+        activeClassName: 'is-active',
+        href: '/'
+      }, (0, _preact.h)("i", {
+        "class": 'fas fa-bookmark'
+      }), " Bookmarks"), (0, _preact.h)("hr", null), (0, _preact.h)("li", null, (0, _preact.h)("a", {
+        href: _package.homepage
+      }, (0, _preact.h)("i", {
+        "class": 'fas fa-code'
+      }), " Source"))))), (0, _preact.h)("div", {
         "class": 'column'
       }, (0, _preact.h)(_preactRouter.default, {
         history: (0, _createHashHistory.default)()
-      }, (0, _preact.h)(_home.default, {
+      }, (0, _preact.h)(_bookmarks.default, {
         "default": true,
         path: ''
-      }), (0, _preact.h)(_search.default, {
-        path: 'search'
       }))))));
     }
   }]);
@@ -21255,7 +23231,333 @@ function (_Component) {
 
 exports.default = App;
 
-},{"../lib/db":74,"./home":68,"./nav":69,"./search":72,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"@babel/runtime/regenerator":17,"history/createHashHistory":23,"preact":54,"preact-router":53}],66:[function(require,module,exports){
+},{"../../../package.json":68,"../lib/db":77,"./bookmarks":71,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"@babel/runtime/regenerator":19,"history/createHashHistory":25,"preact":58,"preact-router":56,"preact-router/match":57}],70:[function(require,module,exports){
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _preactMarkdown = _interopRequireDefault(require("preact-markdown"));
+
+var _preact = require("preact");
+
+var _db = _interopRequireDefault(require("../lib/db"));
+
+var _newBookmark = _interopRequireDefault(require("./new-bookmark"));
+
+var _showBookmark = _interopRequireDefault(require("./show-bookmark"));
+
+/* eslint-disable no-unused-vars */
+var Bookmark =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(Bookmark, _Component);
+
+  function Bookmark(props) {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, Bookmark);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Bookmark).call(this, props));
+    if (props.editing) _this.toggleEdit();
+    return _this;
+  }
+
+  (0, _createClass2.default)(Bookmark, [{
+    key: "toggleEdit",
+    value: function toggleEdit() {
+      var editing = this.state.editing;
+      this.setState({
+        editing: !editing
+      });
+    }
+  }, {
+    key: "render",
+    value: function render(_ref, _ref2) {
+      var _this2 = this;
+
+      var bookmark = _ref.bookmark,
+          onSave = _ref.onSave,
+          onDelete = _ref.onDelete;
+      var editing = _ref2.editing;
+      var toggleEdit = this.toggleEdit.bind(this);
+
+      var save = function save(options) {
+        onSave(options);
+
+        _this2.toggleEdit();
+      };
+
+      var remove =
+      /*#__PURE__*/
+      function () {
+        var _ref3 = (0, _asyncToGenerator2.default)(
+        /*#__PURE__*/
+        _regenerator.default.mark(function _callee() {
+          return _regenerator.default.wrap(function _callee$(_context) {
+            while (1) {
+              switch (_context.prev = _context.next) {
+                case 0:
+                  _context.next = 2;
+                  return _db.default.remove(bookmark);
+
+                case 2:
+                  _context.next = 4;
+                  return onDelete();
+
+                case 4:
+                case "end":
+                  return _context.stop();
+              }
+            }
+          }, _callee, this);
+        }));
+
+        return function remove() {
+          return _ref3.apply(this, arguments);
+        };
+      }();
+
+      return (0, _preact.h)("div", null, editing ? (0, _preact.h)("div", null, (0, _preact.h)(_newBookmark.default, {
+        bookmark: bookmark,
+        onCancel: toggleEdit,
+        onSave: save
+      })) : (0, _preact.h)("div", {
+        "class": 'columns'
+      }, (0, _preact.h)("div", {
+        "class": 'column is-9'
+      }, (0, _preact.h)(_showBookmark.default, {
+        bookmark: bookmark
+      })), (0, _preact.h)("div", {
+        "class": 'column is-3'
+      }, (0, _preact.h)("form", null, (0, _preact.h)("div", {
+        "class": 'field'
+      }, (0, _preact.h)("p", {
+        "class": 'control'
+      }, (0, _preact.h)("a", {
+        "class": 'button is-fullwidth is-info',
+        onClick: toggleEdit
+      }, "Edit"))), (0, _preact.h)("div", {
+        "class": 'field'
+      }, (0, _preact.h)("p", {
+        "class": 'control'
+      }, (0, _preact.h)("a", {
+        "class": 'button is-fullwidth is-warning',
+        onClick: remove
+      }, "Remove")))))));
+    }
+  }]);
+  return Bookmark;
+}(_preact.Component);
+
+exports.default = Bookmark;
+
+},{"../lib/db":77,"./new-bookmark":72,"./show-bookmark":74,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"@babel/runtime/regenerator":19,"preact":58,"preact-markdown":54}],71:[function(require,module,exports){
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _preact = require("preact");
+
+var _db = _interopRequireDefault(require("../lib/db"));
+
+var _log = _interopRequireDefault(require("../lib/log"));
+
+var _bookmark = _interopRequireDefault(require("./bookmark"));
+
+var _newBookmark = _interopRequireDefault(require("./new-bookmark"));
+
+var _search = _interopRequireDefault(require("./search"));
+
+var _welcome = _interopRequireDefault(require("./welcome"));
+
+/* eslint-disable no-unused-vars */
+var Bookmarks =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(Bookmarks, _Component);
+
+  function Bookmarks(props) {
+    var _this;
+
+    (0, _classCallCheck2.default)(this, Bookmarks);
+    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Bookmarks).call(this, props));
+    _this.state = {
+      bookmarks: [],
+      newBookmark: false
+    };
+    return _this;
+  }
+
+  (0, _createClass2.default)(Bookmarks, [{
+    key: "reload",
+    value: function () {
+      var _reload = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee() {
+        var query,
+            docs,
+            _args = arguments;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                query = _args.length > 0 && _args[0] !== undefined ? _args[0] : null;
+
+                if (!query) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 4;
+                return _db.default.searchTags(query);
+
+              case 4:
+                docs = _context.sent;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.next = 9;
+                return _db.default.getBookmarks();
+
+              case 9:
+                docs = _context.sent;
+
+              case 10:
+                this.setState({
+                  bookmarks: docs,
+                  newBookmark: false
+                });
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function reload() {
+        return _reload.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = (0, _asyncToGenerator2.default)(
+      /*#__PURE__*/
+      _regenerator.default.mark(function _callee2() {
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return this.reload();
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "toggleNewBookmark",
+    value: function toggleNewBookmark() {
+      var newBookmark = this.state.newBookmark;
+      this.setState({
+        newBookmark: !newBookmark
+      });
+    }
+  }, {
+    key: "renderBookmark",
+    value: function renderBookmark(bookmark) {
+      var reload = this.reload.bind(this);
+      return (0, _preact.h)("div", null, (0, _preact.h)(_bookmark.default, {
+        bookmark: bookmark,
+        onSave: reload,
+        onDelete: reload
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      // render bookmarks if any exist
+      var _this$state = this.state,
+          bookmarks = _this$state.bookmarks,
+          newBookmark = _this$state.newBookmark;
+      var toggleNewBookmark = this.toggleNewBookmark.bind(this);
+      var reload = this.reload.bind(this);
+      var rendered = bookmarks.map(function (bookmark) {
+        return _this2.renderBookmark(bookmark);
+      });
+      return (0, _preact.h)("div", null, bookmarks.length === 0 ? (0, _preact.h)("div", null, (0, _preact.h)(_welcome.default, null), (0, _preact.h)("hr", null)) : (0, _preact.h)("div", null), (0, _preact.h)("h1", {
+        "class": 'title'
+      }, "Bookmarks"), newBookmark ? (0, _preact.h)("div", null, (0, _preact.h)("h2", {
+        "class": 'subtitle'
+      }, "Add new bookmark"), (0, _preact.h)(_newBookmark.default, {
+        onSave: reload,
+        onCancel: toggleNewBookmark
+      })) : (0, _preact.h)("div", null, (0, _preact.h)("button", {
+        "class": 'button is-fullwidth is-info',
+        onClick: toggleNewBookmark
+      }, "Add new bookmark")), rendered.length ? (0, _preact.h)("div", null, (0, _preact.h)("hr", null), (0, _preact.h)("h2", {
+        "class": 'subtitle'
+      }, "Search bookmarks by tag"), (0, _preact.h)(_search.default, {
+        onQuery: reload
+      }), (0, _preact.h)("hr", null), rendered) : (0, _preact.h)("div", null, (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "No bookmarks.")));
+    }
+  }]);
+  return Bookmarks;
+}(_preact.Component);
+
+exports.default = Bookmarks;
+
+},{"../lib/db":77,"../lib/log":78,"./bookmark":70,"./new-bookmark":72,"./search":73,"./welcome":75,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"@babel/runtime/regenerator":19,"preact":58}],72:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -21312,35 +23614,32 @@ function (_Component) {
 
         if (!bookmark._id) {
           bookmark._id = "bookmark:".concat((0, _v.default)());
-        }
+        } // parse form fields
+
 
         bookmark.title = e.target.elements[0].value;
         bookmark.url = e.target.elements[1].value;
         bookmark.description = e.target.elements[2].value;
         bookmark.tags = e.target.elements[3].value.split(',').map(function (s) {
           return s.trim();
-        });
+        }).filter(function (s) {
+          return !!s;
+        }); // TODO detect and report errors before saving
+        // update timestamps
+
         bookmark.createdAt = bookmark.createdAt ? bookmark.createdAt : Date.now();
-        bookmark.updatedAt = bookmark.updatedAt ? Date.now() : undefined;
+        bookmark.updatedAt = bookmark.updatedAt ? Date.now() : undefined; // save!
 
-        if (bookmark.deleted) {
-          bookmark.deleted = false;
-        } // restore entries on change
-
-
-        (0, _log.default)("Saving ".concat(JSON.stringify(bookmark)));
+        (0, _log.default)("Saving ".concat(JSON.stringify(bookmark, undefined, 2)));
         save(bookmark);
       };
     }
   }, {
     key: "render",
     value: function render(_ref) {
-      var _this = this;
-
       var bookmark = _ref.bookmark,
           onSave = _ref.onSave,
-          onCancel = _ref.onCancel,
-          persistent = _ref.persistent;
+          onCancel = _ref.onCancel;
 
       var save =
       /*#__PURE__*/
@@ -21356,12 +23655,10 @@ function (_Component) {
                   return _db.default.put(bookmark);
 
                 case 2:
-                  _this.formRef.reset();
-
-                  _context.next = 5;
+                  _context.next = 4;
                   return onSave();
 
-                case 5:
+                case 4:
                 case "end":
                   return _context.stop();
               }
@@ -21375,10 +23672,13 @@ function (_Component) {
       }();
 
       return (0, _preact.h)("div", null, (0, _preact.h)("form", {
-        ref: function ref(el) {
-          _this.formRef = el;
-        },
         onSubmit: this.submit(bookmark, save)
+      }, (0, _preact.h)("div", {
+        "class": 'columns'
+      }, (0, _preact.h)("div", {
+        "class": 'column is-9'
+      }, (0, _preact.h)("div", {
+        "class": 'box'
       }, (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("div", {
@@ -21387,7 +23687,7 @@ function (_Component) {
         "class": 'input',
         type: 'text',
         placeholder: 'Title',
-        value: bookmark.title
+        value: bookmark ? bookmark.title : ''
       }))), (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("div", {
@@ -21396,7 +23696,7 @@ function (_Component) {
         "class": 'input',
         type: 'text',
         placeholder: 'URL',
-        value: bookmark.url
+        value: bookmark ? bookmark.url : ''
       }))), (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("div", {
@@ -21405,7 +23705,7 @@ function (_Component) {
         "class": 'input',
         type: 'text',
         placeholder: 'Description',
-        value: bookmark.description
+        value: bookmark ? bookmark.description : ''
       })), (0, _preact.h)("p", {
         "class": 'help'
       }, " Use ", (0, _preact.h)("a", {
@@ -21419,10 +23719,12 @@ function (_Component) {
         "class": 'input',
         type: 'text',
         placeholder: 'Tags',
-        value: bookmark.tags ? bookmark.tags.join(', ') : ''
+        value: bookmark ? bookmark.tags.join(', ') : ''
       })), (0, _preact.h)("p", {
         "class": 'help'
-      }, "Separate tags with commas.")), (0, _preact.h)("div", {
+      }, "Separate tags with commas. Tags are indexed for searching.")))), (0, _preact.h)("div", {
+        "class": 'column is-3'
+      }, (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("p", {
         "class": 'control'
@@ -21430,129 +23732,177 @@ function (_Component) {
         type: 'submit',
         "class": 'button is-fullwidth is-success',
         value: 'Save'
-      }))), persistent ? (0, _preact.h)("div", {
+      }))), (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("p", {
         "class": 'control'
-      }, (0, _preact.h)("button", {
+      }, (0, _preact.h)("a", {
         "class": 'button is-fullwidth is-info',
         onClick: onCancel
-      }, "Cancel"))) : (0, _preact.h)("div", null)));
+      }, "Cancel")))))));
     }
   }]);
   return NewBookmark;
 }(_preact.Component);
 
-var Bookmark =
+exports.default = NewBookmark;
+
+},{"../lib/db":77,"../lib/log":78,"../lib/util":79,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"@babel/runtime/regenerator":19,"preact":58,"preact-markdown":54,"uuid/v4":64}],73:[function(require,module,exports){
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _preact = require("preact");
+
+var _log = _interopRequireDefault(require("../lib/log"));
+
+/* eslint-disable no-unused-vars */
+var Search =
 /*#__PURE__*/
-function (_Component2) {
-  (0, _inherits2.default)(Bookmark, _Component2);
+function (_Component) {
+  (0, _inherits2.default)(Search, _Component);
 
-  function Bookmark(props) {
-    var _this2;
-
-    (0, _classCallCheck2.default)(this, Bookmark);
-    _this2 = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Bookmark).call(this, props));
-    if (props.editing) _this2.toggleEdit();
-    return _this2;
+  function Search() {
+    (0, _classCallCheck2.default)(this, Search);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Search).apply(this, arguments));
   }
 
-  (0, _createClass2.default)(Bookmark, [{
-    key: "toggleEdit",
-    value: function toggleEdit() {
-      this.setState({
-        editing: !this.state.editing
-      });
+  (0, _createClass2.default)(Search, [{
+    key: "submit",
+    value: function submit(onQuery) {
+      return (
+        /*#__PURE__*/
+        function () {
+          var _ref = (0, _asyncToGenerator2.default)(
+          /*#__PURE__*/
+          _regenerator.default.mark(function _callee(e) {
+            var query;
+            return _regenerator.default.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    e.preventDefault();
+                    query = e.target.elements[0].value;
+                    (0, _log.default)("Search query: ".concat(query));
+                    onQuery(query);
+
+                  case 4:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee, this);
+          }));
+
+          return function (_x) {
+            return _ref.apply(this, arguments);
+          };
+        }()
+      );
     }
   }, {
     key: "render",
-    value: function render(_ref3, _ref4) {
-      var bookmark = _ref3.bookmark,
-          onSave = _ref3.onSave,
-          onDelete = _ref3.onDelete,
-          persistent = _ref3.persistent;
-      var editing = _ref4.editing;
-      var toggleEdit = this.toggleEdit.bind(this);
+    value: function render(_ref2) {
+      var onQuery = _ref2.onQuery;
+      var bookmarks = this.state.bookmarks;
+      return (0, _preact.h)("form", {
+        onSubmit: this.submit(onQuery)
+      }, (0, _preact.h)("div", {
+        "class": 'columns'
+      }, (0, _preact.h)("div", {
+        "class": 'column'
+      }, (0, _preact.h)("div", {
+        "class": 'field'
+      }, (0, _preact.h)("div", {
+        "class": 'control'
+      }, (0, _preact.h)("input", {
+        "class": 'input',
+        type: 'text',
+        placeholder: 'Search'
+      })), (0, _preact.h)("p", {
+        "class": 'help'
+      }, "Search by tags. Separate terms with ','. Precede terms with '+' to require a term, '-' to exclude it."))), (0, _preact.h)("div", {
+        "class": 'column is-narrow'
+      }, (0, _preact.h)("div", {
+        "class": 'field'
+      }, (0, _preact.h)("p", {
+        "class": 'control'
+      }, (0, _preact.h)("input", {
+        type: 'submit',
+        "class": 'button is-fullwidth is-success',
+        value: 'Search'
+      }))))));
+    }
+  }]);
+  return Search;
+}(_preact.Component);
+
+exports.default = Search;
+
+},{"../lib/log":78,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"@babel/runtime/regenerator":19,"preact":58}],74:[function(require,module,exports){
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _preactMarkdown = _interopRequireDefault(require("preact-markdown"));
+
+var _preact = require("preact");
+
+var _util = require("../lib/util");
+
+/* eslint-disable no-unused-vars */
+var ShowBookmark =
+/*#__PURE__*/
+function (_Component) {
+  (0, _inherits2.default)(ShowBookmark, _Component);
+
+  function ShowBookmark() {
+    (0, _classCallCheck2.default)(this, ShowBookmark);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(ShowBookmark).apply(this, arguments));
+  }
+
+  (0, _createClass2.default)(ShowBookmark, [{
+    key: "render",
+    value: function render(_ref) {
+      var bookmark = _ref.bookmark;
       var createdAt = bookmark.createdAt ? (0, _util.getHumanDate)(bookmark.createdAt) : '';
       var updatedAt = bookmark.updatedAt ? (0, _util.getHumanDate)(bookmark.updatedAt) : '';
       var tags = bookmark.tags ? bookmark.tags.join(', ') : '';
-
-      var remove =
-      /*#__PURE__*/
-      function () {
-        var _ref5 = (0, _asyncToGenerator2.default)(
-        /*#__PURE__*/
-        _regenerator.default.mark(function _callee2() {
-          return _regenerator.default.wrap(function _callee2$(_context2) {
-            while (1) {
-              switch (_context2.prev = _context2.next) {
-                case 0:
-                  _context2.next = 2;
-                  return _db.default.remove(bookmark);
-
-                case 2:
-                  _context2.next = 4;
-                  return onDelete();
-
-                case 4:
-                case "end":
-                  return _context2.stop();
-              }
-            }
-          }, _callee2, this);
-        }));
-
-        return function remove() {
-          return _ref5.apply(this, arguments);
-        };
-      }();
-
-      var restore =
-      /*#__PURE__*/
-      function () {
-        var _ref6 = (0, _asyncToGenerator2.default)(
-        /*#__PURE__*/
-        _regenerator.default.mark(function _callee3() {
-          return _regenerator.default.wrap(function _callee3$(_context3) {
-            while (1) {
-              switch (_context3.prev = _context3.next) {
-                case 0:
-                  if (!bookmark.deleted) {
-                    _context3.next = 4;
-                    break;
-                  }
-
-                  bookmark.deleted = false;
-                  _context3.next = 4;
-                  return _db.default.put(bookmark);
-
-                case 4:
-                  _context3.next = 6;
-                  return onDelete();
-
-                case 6:
-                case "end":
-                  return _context3.stop();
-              }
-            }
-          }, _callee3, this);
-        }));
-
-        return function restore() {
-          return _ref6.apply(this, arguments);
-        };
-      }();
-
-      return (0, _preact.h)("div", null, editing ? (0, _preact.h)("div", null, (0, _preact.h)(NewBookmark, {
-        bookmark: bookmark,
-        onCancel: toggleEdit,
-        onSave: onSave,
-        persistent: persistent
-      })) : (0, _preact.h)("div", {
-        "class": 'columns'
-      }, (0, _preact.h)("div", {
-        "class": 'column is-9'
-      }, (0, _preact.h)("div", {
+      return (0, _preact.h)("div", {
         "class": 'box'
       }, (0, _preact.h)("h1", {
         "class": 'title'
@@ -21563,52 +23913,15 @@ function (_Component2) {
         "class": 'content'
       }, (0, _preact.h)(_preactMarkdown.default, {
         markdown: bookmark.description
-      })), tags ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Tags: ", tags))) : (0, _preact.h)("p", null), (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Created: ", createdAt))), updatedAt ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Updated: ", updatedAt))) : (0, _preact.h)("p", null))), (0, _preact.h)("div", {
-        "class": 'column is-3'
-      }, bookmark.deleted ? (0, _preact.h)("form", null, (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("button", {
-        "class": 'button is-fullwidth is-info',
-        onClick: toggleEdit
-      }, "Edit"))), (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("button", {
-        "class": 'button is-fullwidth is-danger',
-        onClick: remove
-      }, "Delete"))), (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("button", {
-        "class": 'button is-fullwidth is-success',
-        onClick: restore
-      }, "Restore")))) : (0, _preact.h)("form", null, (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("button", {
-        "class": 'button is-fullwidth is-info',
-        onClick: toggleEdit
-      }, "Edit"))), (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("button", {
-        "class": 'button is-fullwidth is-warning',
-        onClick: remove
-      }, "Remove")))))));
+      })), bookmark.tags ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Tags: ", tags))) : (0, _preact.h)("p", null), (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Created: ", createdAt))), updatedAt ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Updated: ", updatedAt))) : (0, _preact.h)("p", null));
     }
   }]);
-  return Bookmark;
+  return ShowBookmark;
 }(_preact.Component);
 
-exports.default = Bookmark;
+exports.default = ShowBookmark;
 
-},{"../lib/db":74,"../lib/log":75,"../lib/util":76,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"@babel/runtime/regenerator":17,"preact":54,"preact-markdown":51,"uuid/v4":60}],67:[function(require,module,exports){
+},{"../lib/util":79,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"preact":58,"preact-markdown":54}],75:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -21617,10 +23930,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
@@ -21633,163 +23942,6 @@ var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/ge
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
 var _preact = require("preact");
-
-var _db = _interopRequireDefault(require("../lib/db"));
-
-var _log = _interopRequireDefault(require("../lib/log"));
-
-var _bookmark = _interopRequireDefault(require("./bookmark"));
-
-/* eslint-disable no-unused-vars */
-var Bookmarks =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2.default)(Bookmarks, _Component);
-
-  function Bookmarks(props) {
-    var _this;
-
-    (0, _classCallCheck2.default)(this, Bookmarks);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Bookmarks).call(this, props));
-    _this.state = {
-      bookmarks: []
-    };
-    return _this;
-  }
-
-  (0, _createClass2.default)(Bookmarks, [{
-    key: "reload",
-    value: function () {
-      var _reload = (0, _asyncToGenerator2.default)(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _ref, docs;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _db.default.find({
-                  selector: {
-                    tags: {
-                      $exists: true
-                    }
-                  },
-                  ddoc: 'bookmark-tag-search'
-                });
-
-              case 2:
-                _ref = _context.sent;
-                docs = _ref.docs;
-                this.setState({
-                  bookmarks: docs
-                });
-
-              case 5:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      return function reload() {
-        return _reload.apply(this, arguments);
-      };
-    }()
-  }, {
-    key: "componentDidMount",
-    value: function () {
-      var _componentDidMount = (0, _asyncToGenerator2.default)(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee2() {
-        return _regenerator.default.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return this.reload();
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      return function componentDidMount() {
-        return _componentDidMount.apply(this, arguments);
-      };
-    }()
-  }, {
-    key: "renderBookmark",
-    value: function renderBookmark(bookmark) {
-      var editing = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      var persistent = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-      var reload = this.reload.bind(this);
-      return (0, _preact.h)("div", null, (0, _preact.h)(_bookmark.default, {
-        editing: editing,
-        persistent: persistent,
-        bookmark: bookmark,
-        onSave: reload,
-        onDelete: reload
-      }));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      // render bookmarks if any exist
-      var bookmarks = this.state.bookmarks;
-      var rendered = bookmarks.map(function (bookmark) {
-        return _this2.renderBookmark(bookmark);
-      });
-      return (0, _preact.h)("div", null, (0, _preact.h)("h1", {
-        "class": 'title'
-      }, "Bookmarks"), (0, _preact.h)("h2", {
-        "class": 'subtitle'
-      }, "Add a new bookmark"), this.renderBookmark({}, true, false), (0, _preact.h)("hr", null), (0, _preact.h)("h2", {
-        "class": 'subtitle'
-      }, "Bookmarks"), rendered.length ? rendered : (0, _preact.h)("div", null, (0, _preact.h)("p", null, "No bookmarks.")));
-    }
-  }]);
-  return Bookmarks;
-}(_preact.Component);
-
-exports.default = Bookmarks;
-
-},{"../lib/db":74,"../lib/log":75,"./bookmark":66,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"@babel/runtime/regenerator":17,"preact":54}],68:[function(require,module,exports){
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _preact = require("preact");
-
-var _db = _interopRequireDefault(require("../lib/db"));
-
-var _bookmarks = _interopRequireDefault(require("./bookmarks"));
 
 /* eslint-disable no-unused-vars */
 var Welcome =
@@ -21819,464 +23971,9 @@ function (_Component) {
   return Welcome;
 }(_preact.Component);
 
-var Home =
-/*#__PURE__*/
-function (_Component2) {
-  (0, _inherits2.default)(Home, _Component2);
+exports.default = Welcome;
 
-  function Home(props) {
-    var _this;
-
-    (0, _classCallCheck2.default)(this, Home);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Home).call(this, props));
-    _this.state = {
-      hasBookmarks: null
-    };
-    return _this;
-  }
-
-  (0, _createClass2.default)(Home, [{
-    key: "componentDidMount",
-    value: function () {
-      var _componentDidMount = (0, _asyncToGenerator2.default)(
-      /*#__PURE__*/
-      _regenerator.default.mark(function _callee() {
-        var _ref, docs, hasBookmarks;
-
-        return _regenerator.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return _db.default.find({
-                  selector: {
-                    tags: {
-                      $exists: true
-                    }
-                  },
-                  ddoc: 'bookmark-tag-search'
-                });
-
-              case 2:
-                _ref = _context.sent;
-                docs = _ref.docs;
-                hasBookmarks = docs.length > 0;
-                this.setState({
-                  hasBookmarks: hasBookmarks
-                });
-
-              case 6:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      return function componentDidMount() {
-        return _componentDidMount.apply(this, arguments);
-      };
-    }()
-  }, {
-    key: "render",
-    value: function render() {
-      // render bookmarks if any exist
-      var hasBookmarks = this.state.hasBookmarks;
-
-      if (hasBookmarks === false) {
-        return (0, _preact.h)("div", null, (0, _preact.h)(Welcome, null), (0, _preact.h)("hr", null), (0, _preact.h)(_bookmarks.default, null));
-      } else if (hasBookmarks) {
-        return (0, _preact.h)("div", null, (0, _preact.h)(_bookmarks.default, null));
-      } else {
-        return (0, _preact.h)("div", null, (0, _preact.h)("h1", {
-          "class": 'title'
-        }, "Loading..."));
-      }
-    }
-  }]);
-  return Home;
-}(_preact.Component);
-
-exports.default = Home;
-
-},{"../lib/db":74,"./bookmarks":67,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"@babel/runtime/regenerator":17,"preact":54}],69:[function(require,module,exports){
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _createHashHistory = _interopRequireDefault(require("history/createHashHistory"));
-
-var _preactRouter = _interopRequireDefault(require("preact-router"));
-
-var _preact = require("preact");
-
-var _package = require("../../../package.json");
-
-/* eslint-disable no-unused-vars */
-// TODO observe active link state
-var Nav =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2.default)(Nav, _Component);
-
-  function Nav() {
-    (0, _classCallCheck2.default)(this, Nav);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Nav).apply(this, arguments));
-  }
-
-  (0, _createClass2.default)(Nav, [{
-    key: "render",
-    value: function render() {
-      return (0, _preact.h)("aside", {
-        "class": 'menu'
-      }, (0, _preact.h)("p", {
-        "class": 'menu-label'
-      }, _package.name), (0, _preact.h)("ul", {
-        "class": 'menu-list'
-      }, (0, _preact.h)("li", null, (0, _preact.h)("a", {
-        href: '#/'
-      }, (0, _preact.h)("i", {
-        "class": 'fas fa-bookmark'
-      }), " Bookmarks")), (0, _preact.h)("li", null, (0, _preact.h)("a", {
-        href: '#/search'
-      }, (0, _preact.h)("i", {
-        "class": 'fas fa-search'
-      }), " Search")), (0, _preact.h)("hr", null), (0, _preact.h)("li", null, (0, _preact.h)("a", {
-        href: _package.homepage
-      }, (0, _preact.h)("i", {
-        "class": 'fas fa-code'
-      }), " Source"))));
-    }
-  }]);
-  return Nav;
-}(_preact.Component);
-
-exports.default = Nav;
-
-},{"../../../package.json":64,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"history/createHashHistory":23,"preact":54,"preact-router":53}],70:[function(require,module,exports){
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _preactMarkdown = _interopRequireDefault(require("preact-markdown"));
-
-var _preact = require("preact");
-
-var _util = require("../lib/util");
-
-/* eslint-disable no-unused-vars */
-var SearchBookmark =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2.default)(SearchBookmark, _Component);
-
-  function SearchBookmark() {
-    (0, _classCallCheck2.default)(this, SearchBookmark);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(SearchBookmark).apply(this, arguments));
-  }
-
-  (0, _createClass2.default)(SearchBookmark, [{
-    key: "render",
-    value: function render(_ref) {
-      var bookmark = _ref.bookmark;
-      var createdAt = bookmark.createdAt ? (0, _util.getHumanDate)(bookmark.createdAt) : '';
-      var updatedAt = bookmark.updatedAt ? (0, _util.getHumanDate)(bookmark.updatedAt) : '';
-      var tags = bookmark.tags ? bookmark.tags.join(', ') : '';
-      return (0, _preact.h)("div", {
-        "class": 'box'
-      }, (0, _preact.h)("h1", {
-        "class": 'title'
-      }, (0, _preact.h)("a", {
-        href: bookmark.url,
-        target: '_blank'
-      }, bookmark.title)), (0, _preact.h)("div", {
-        "class": 'content'
-      }, (0, _preact.h)(_preactMarkdown.default, {
-        markdown: bookmark.description
-      })), bookmark.tags ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Tags: ", bookmark.tags))) : (0, _preact.h)("p", null), (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Created: ", bookmark.createdAt))), bookmark.updatedAt ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Updated: ", bookmark.updatedAt))) : (0, _preact.h)("p", null));
-    }
-  }]);
-  return SearchBookmark;
-}(_preact.Component);
-
-exports.default = SearchBookmark;
-
-},{"../lib/util":76,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"preact":54,"preact-markdown":51}],71:[function(require,module,exports){
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _preact = require("preact");
-
-var _searchBookmark = _interopRequireDefault(require("./search-bookmark"));
-
-/* eslint-disable no-unused-vars */
-var SearchBookmarks =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2.default)(SearchBookmarks, _Component);
-
-  function SearchBookmarks() {
-    (0, _classCallCheck2.default)(this, SearchBookmarks);
-    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(SearchBookmarks).apply(this, arguments));
-  }
-
-  (0, _createClass2.default)(SearchBookmarks, [{
-    key: "renderBookmark",
-    value: function renderBookmark(bookmark) {
-      return (0, _preact.h)("div", null, (0, _preact.h)(_searchBookmark.default, {
-        bookmark: bookmark
-      }));
-    }
-  }, {
-    key: "render",
-    value: function render(_ref) {
-      var bookmarks = _ref.bookmarks;
-      var rendered = bookmarks.map(this.renderBookmark.bind(this));
-      return (0, _preact.h)("div", null, " ", rendered, " ");
-    }
-  }]);
-  return SearchBookmarks;
-}(_preact.Component);
-
-exports.default = SearchBookmarks;
-
-},{"./search-bookmark":70,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"preact":54}],72:[function(require,module,exports){
-"use strict";
-
-var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
-var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
-
-var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
-
-var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
-
-var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
-
-var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
-
-var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
-
-var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
-
-var _preact = require("preact");
-
-var _db = _interopRequireDefault(require("../lib/db"));
-
-var _log = _interopRequireDefault(require("../lib/log"));
-
-var _searchBookmarks = _interopRequireDefault(require("./search-bookmarks"));
-
-/* eslint-disable no-unused-vars */
-var Search =
-/*#__PURE__*/
-function (_Component) {
-  (0, _inherits2.default)(Search, _Component);
-
-  function Search(props) {
-    var _this;
-
-    (0, _classCallCheck2.default)(this, Search);
-    _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Search).call(this, props));
-
-    _this.setState({
-      bookmarks: null
-    });
-
-    return _this;
-  }
-
-  (0, _createClass2.default)(Search, [{
-    key: "submit",
-    value: function submit() {
-      var _this2 = this;
-
-      return (
-        /*#__PURE__*/
-        function () {
-          var _ref = (0, _asyncToGenerator2.default)(
-          /*#__PURE__*/
-          _regenerator.default.mark(function _callee(e) {
-            var query, tagSelector, selector, _ref4, docs;
-
-            return _regenerator.default.wrap(function _callee$(_context) {
-              while (1) {
-                switch (_context.prev = _context.next) {
-                  case 0:
-                    e.preventDefault();
-                    (0, _log.default)('Search:');
-                    query = e.target.elements[0].value;
-                    (0, _log.default)("- Query: ".concat(query));
-                    tagSelector = query.split(',').map(function (term) {
-                      term = term.trim();
-
-                      if (term[0] === '+') {
-                        return ['$all', term.slice(1)];
-                      } else if (term[0] === '-') {
-                        return ['$nin', term.slice(1)];
-                      } else {
-                        return ['$in', term];
-                      }
-                    }).reduce(function (selector, _ref2) {
-                      var _ref3 = (0, _slicedToArray2.default)(_ref2, 2),
-                          operand = _ref3[0],
-                          term = _ref3[1];
-
-                      if (operand === '$all') {
-                        if (!selector.$all) selector.$all = [];
-                        selector.$all.push(term);
-                      } else {
-                        if (!selector.$elemMatch) selector.$elemMatch = {};
-
-                        if (operand === '$nin') {
-                          if (!selector.$elemMatch.$nin) selector.$elemMatch.$nin = [];
-                          selector.$elemMatch.$nin.push(term);
-                        } else if (operand === '$in') {
-                          if (!selector.$elemMatch.$in) selector.$elemMatch.$in = [];
-                          selector.$elemMatch.$in.push(term);
-                        }
-                      }
-
-                      return selector;
-                    }, {});
-                    selector = {
-                      tags: tagSelector
-                    };
-                    (0, _log.default)("- Selector: ".concat(JSON.stringify(selector)));
-                    _context.prev = 7;
-                    _context.next = 10;
-                    return _db.default.find({
-                      selector: selector,
-                      use_index: 'bookmark-tag-search'
-                    });
-
-                  case 10:
-                    _ref4 = _context.sent;
-                    docs = _ref4.docs;
-                    (0, _log.default)("- Results: ".concat(JSON.stringify(docs)));
-
-                    _this2.setState({
-                      bookmarks: docs
-                    });
-
-                    _context.next = 19;
-                    break;
-
-                  case 16:
-                    _context.prev = 16;
-                    _context.t0 = _context["catch"](7);
-                    (0, _log.default)("Unexpected error: ".concat(JSON.stringify(_context.t0)));
-
-                  case 19:
-                  case "end":
-                    return _context.stop();
-                }
-              }
-            }, _callee, this, [[7, 16]]);
-          }));
-
-          return function (_x) {
-            return _ref.apply(this, arguments);
-          };
-        }()
-      );
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var bookmarks = this.state.bookmarks;
-      return (0, _preact.h)("div", null, (0, _preact.h)("h1", {
-        "class": 'title'
-      }, "Search"), (0, _preact.h)("form", {
-        onSubmit: this.submit()
-      }, (0, _preact.h)("div", {
-        "class": 'columns'
-      }, (0, _preact.h)("div", {
-        "class": 'column'
-      }, (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("div", {
-        "class": 'control'
-      }, (0, _preact.h)("input", {
-        "class": 'input',
-        type: 'text',
-        placeholder: 'Search'
-      })), (0, _preact.h)("p", {
-        "class": 'help'
-      }, "Search by tags. Separate terms with ','. Precede terms with '+' to require a term, '-' to exclude it."))), (0, _preact.h)("div", {
-        "class": 'column is-narrow'
-      }, (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("input", {
-        type: 'submit',
-        "class": 'button is-fullwidth is-success',
-        value: 'Search'
-      })))))), (0, _preact.h)("hr", null), bookmarks === null ? (0, _preact.h)("div", null) : (0, _preact.h)(_searchBookmarks.default, {
-        bookmarks: bookmarks
-      }));
-    }
-  }]);
-  return Search;
-}(_preact.Component);
-
-exports.default = Search;
-
-},{"../lib/db":74,"../lib/log":75,"./search-bookmarks":71,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":6,"@babel/runtime/helpers/inherits":7,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/helpers/possibleConstructorReturn":11,"@babel/runtime/helpers/slicedToArray":13,"@babel/runtime/regenerator":17,"preact":54}],73:[function(require,module,exports){
+},{"@babel/runtime/helpers/classCallCheck":4,"@babel/runtime/helpers/createClass":5,"@babel/runtime/helpers/getPrototypeOf":7,"@babel/runtime/helpers/inherits":8,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/possibleConstructorReturn":13,"preact":58}],76:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -22293,7 +23990,7 @@ window.onload = function () {
   (0, _preact.render)((0, _preact.h)(_app.default, null), document.body);
 };
 
-},{"./components/app":65,"./lib/log":75,"@babel/runtime/helpers/interopRequireDefault":8,"preact":54}],74:[function(require,module,exports){
+},{"./components/app":69,"./lib/log":78,"@babel/runtime/helpers/interopRequireDefault":9,"preact":58}],77:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -22302,6 +23999,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -22313,42 +24014,329 @@ var _pouchdbFind = _interopRequireDefault(require("pouchdb-find"));
 
 var _package = require("../../../package.json");
 
+var _lodash = _interopRequireDefault(require("lodash.isequal"));
+
+var _log = _interopRequireDefault(require("./log"));
+
+/* global emit */
 _pouchdb.default.plugin(_pouchdbFind.default);
 
-var db = new _pouchdb.default(_package.name);
-db.setup =
-/*#__PURE__*/
-(0, _asyncToGenerator2.default)(
-/*#__PURE__*/
-_regenerator.default.mark(function _callee() {
-  return _regenerator.default.wrap(function _callee$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return db.createIndex({
-            index: {
-              partial_filter_selector: {
-                _id: {
-                  $regex: '^bookmark:.+$'
-                }
-              },
-              fields: ['tags']
-            },
-            ddoc: 'bookmark-tag-search'
-          });
-
-        case 2:
-        case "end":
-          return _context.stop();
-      }
+var designTags = {
+  _id: '_design/tags',
+  views: {
+    listTags: {
+      map: function (doc) {
+        if (doc.tags && doc.tags.length) {
+          doc.tags.forEach(emit);
+        }
+      }.toString(),
+      reduce: '_count'
     }
-  }, _callee, this);
-}));
-var _default = db;
+  }
+};
+
+_pouchdb.default.plugin({
+  setup: function () {
+    var _setup = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee() {
+      var ddoc, rev;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return this.createIndex({
+                index: {
+                  // TODO partial filter selector, once implemented: https://github.com/pouchdb/pouchdb/issues/7467
+                  fields: ['_id', 'tags']
+                },
+                ddoc: 'tag-search'
+              });
+
+            case 2:
+              _context.prev = 2;
+              _context.next = 5;
+              return this.put(designTags);
+
+            case 5:
+              _context.next = 23;
+              break;
+
+            case 7:
+              _context.prev = 7;
+              _context.t0 = _context["catch"](2);
+
+              if (!(_context.t0.name === 'conflict')) {
+                _context.next = 22;
+                break;
+              }
+
+              _context.next = 12;
+              return this.get(designTags._id);
+
+            case 12:
+              ddoc = _context.sent;
+              rev = ddoc._rev;
+              delete ddoc._rev;
+
+              if ((0, _lodash.default)(ddoc, designTags)) {
+                _context.next = 20;
+                break;
+              }
+
+              (0, _log.default)("Design document ".concat(designTags._id, " out of date. Updating..."));
+              designTags._rev = rev;
+              _context.next = 20;
+              return this.put(designTags);
+
+            case 20:
+              _context.next = 23;
+              break;
+
+            case 22:
+              console.error(_context.t0);
+
+            case 23:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this, [[2, 7]]);
+    }));
+
+    return function setup() {
+      return _setup.apply(this, arguments);
+    };
+  }(),
+  getType: function () {
+    var _getType = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee2(type, options) {
+      var _ref, docs;
+
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return this.find((0, _objectSpread2.default)({
+                selector: {
+                  _id: {
+                    $gt: "".concat(type, ":"),
+                    $lt: "".concat(type, "\uFFFF")
+                  }
+                }
+              }, options));
+
+            case 2:
+              _ref = _context2.sent;
+              docs = _ref.docs;
+              return _context2.abrupt("return", docs);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    return function getType(_x, _x2) {
+      return _getType.apply(this, arguments);
+    };
+  }(),
+  getBookmarks: function () {
+    var _getBookmarks = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee3() {
+      var options,
+          bookmarks,
+          _args3 = arguments;
+      return _regenerator.default.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              options = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : {};
+              _context3.next = 3;
+              return this.getType('bookmark', options);
+
+            case 3:
+              bookmarks = _context3.sent;
+              return _context3.abrupt("return", bookmarks);
+
+            case 5:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this);
+    }));
+
+    return function getBookmarks() {
+      return _getBookmarks.apply(this, arguments);
+    };
+  }(),
+  getLists: function () {
+    var _getLists = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee4() {
+      var options,
+          lists,
+          _args4 = arguments;
+      return _regenerator.default.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              options = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : {};
+              _context4.next = 3;
+              return this.getType('list', options);
+
+            case 3:
+              lists = _context4.sent;
+              return _context4.abrupt("return", lists);
+
+            case 5:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this);
+    }));
+
+    return function getLists() {
+      return _getLists.apply(this, arguments);
+    };
+  }(),
+  getTags: function () {
+    var _getTags = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee5() {
+      var options,
+          _ref2,
+          rows,
+          tags,
+          _args5 = arguments;
+
+      return _regenerator.default.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              options = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : {};
+              _context5.next = 3;
+              return this.query('tags/listTags', (0, _objectSpread2.default)({
+                group: true
+              }, options));
+
+            case 3:
+              _ref2 = _context5.sent;
+              rows = _ref2.rows;
+              tags = rows.map(function (_ref3) {
+                var key = _ref3.key;
+                return key;
+              });
+              return _context5.abrupt("return", tags);
+
+            case 7:
+            case "end":
+              return _context5.stop();
+          }
+        }
+      }, _callee5, this);
+    }));
+
+    return function getTags() {
+      return _getTags.apply(this, arguments);
+    };
+  }(),
+  _parseQuery: function _parseQuery(query) {
+    var tagSelector = query.split(',').map(function (token) {
+      var _token$trim$match$sli = token.trim().match(/^([+-]?)(.*)$/).slice(1, 3),
+          _token$trim$match$sli2 = (0, _slicedToArray2.default)(_token$trim$match$sli, 2),
+          operand = _token$trim$match$sli2[0],
+          term = _token$trim$match$sli2[1];
+
+      if (!operand && !term) {
+        return null;
+      } else if (operand && !term) {
+        // use operand as term, ex: '-'
+        return [null, operand];
+      } else {
+        return [operand, term];
+      }
+    }).filter(function (x) {
+      return !!x;
+    }).reduce(function (selector, _ref4) {
+      var _ref5 = (0, _slicedToArray2.default)(_ref4, 2),
+          operand = _ref5[0],
+          term = _ref5[1];
+
+      if (!operand) {
+        if (!selector.$elemMatch) selector.$elemMatch = {
+          $in: []
+        };
+        selector.$elemMatch.$in.push(term);
+      } else if (operand === '-') {
+        if (!selector.$allMatch) selector.$allMatch = {
+          $nin: []
+        };
+        selector.$allMatch.$nin.push(term);
+      } else if (operand === '+') {
+        if (!selector.$all) selector.$all = [];
+        selector.$all.push(term);
+      }
+
+      return selector;
+    }, {});
+    return {
+      _id: {
+        $gt: 'bookmark:',
+        $lt: "bookmark\uFFFF"
+      },
+      tags: tagSelector
+    };
+  },
+  searchTags: function () {
+    var _searchTags = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee6(query) {
+      var selector, _ref6, docs;
+
+      return _regenerator.default.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              selector = this._parseQuery(query);
+              _context6.next = 3;
+              return this.find({
+                selector: selector,
+                use_index: 'tag-search'
+              });
+
+            case 3:
+              _ref6 = _context6.sent;
+              docs = _ref6.docs;
+              return _context6.abrupt("return", docs);
+
+            case 6:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6, this);
+    }));
+
+    return function searchTags(_x3) {
+      return _searchTags.apply(this, arguments);
+    };
+  }()
+});
+
+var _default = new _pouchdb.default(_package.name);
+
 exports.default = _default;
 
-},{"../../../package.json":64,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/interopRequireDefault":8,"@babel/runtime/regenerator":17,"pouchdb":45,"pouchdb-find":35}],75:[function(require,module,exports){
+},{"../../../package.json":68,"./log":78,"@babel/runtime/helpers/asyncToGenerator":3,"@babel/runtime/helpers/interopRequireDefault":9,"@babel/runtime/helpers/objectSpread":12,"@babel/runtime/helpers/slicedToArray":15,"@babel/runtime/regenerator":19,"lodash.isequal":30,"pouchdb":48,"pouchdb-find":38}],78:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22370,7 +24358,7 @@ log.error = function (msg) {
 var _default = log;
 exports.default = _default;
 
-},{"../../../package.json":64}],76:[function(require,module,exports){
+},{"../../../package.json":68}],79:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -22384,4 +24372,4 @@ function getHumanDate(ms) {
   return date.toISOString();
 }
 
-},{}]},{},[73]);
+},{}]},{},[76]);
