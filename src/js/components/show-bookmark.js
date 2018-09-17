@@ -5,7 +5,7 @@ import { h, Component } from 'preact'
 
 import { getHumanDate } from '../lib/util'
 
-export default class SearchBookmark extends Component {
+export default class ShowBookmark extends Component {
   render ({ bookmark }) {
     const createdAt = bookmark.createdAt ? getHumanDate(bookmark.createdAt) : ''
     const updatedAt = bookmark.updatedAt ? getHumanDate(bookmark.updatedAt) : ''

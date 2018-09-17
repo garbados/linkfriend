@@ -38,7 +38,7 @@ V0 implements basic features, like annotating bookmarks and searching them.
 	- [x] Title
 	- [x] Description
 	- [x] Tags
-- [ ] Search links by tags.
+- [x] Search links by tags.
 - [ ] Implement typeaheads for
 	- [ ] Tags
 	- [ ] Search terms

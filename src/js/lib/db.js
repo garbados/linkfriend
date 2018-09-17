@@ -85,6 +85,9 @@ PouchDB.plugin({
       const [ operand, term ] = token.trim().match(/^([+-]?)(.*)$/).slice(1, 3)
       if (!operand && !term) {
         return null
+      } else if (operand && !term) {
+        // use operand as term, ex: '-'
+        return [ null, operand ]
       } else {
         return [ operand, term ]
       }

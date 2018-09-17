@@ -8,16 +8,19 @@ describe('db', function () {
     await db.setup()
     await db.bulkDocs([{
       _id: 'bookmark:1',
-      title: 'hello world',
       description: 'hello world',
       url: 'https://bovid.space',
       tags: ['hello', 'world']
     }, {
       _id: 'bookmark:2',
-      title: 'wake up sheeple',
-      description: 'it is time for breakfast',
+      description: 'wake up sheeple! it is time for breakfast',
       url: 'https://bovid.space',
       tags: ['sheeple']
+    }, {
+      _id: 'bookmark:3',
+      description: 'ups and downs',
+      url: 'https://bovid.space',
+      tags: ['-', '+']
     }, {
       _id: 'list:1',
       title: 'sheep posts',
@@ -40,7 +43,7 @@ describe('db', function () {
 
   it('should retrieve bookmarks only', async function () {
     const bookmarks = await db.getBookmarks()
-    assert.strict.equal(bookmarks.length, 2)
+    assert.strict.equal(bookmarks.length, 3)
   })
 
   it('should retrieve lists only', async function () {
@@ -57,8 +60,6 @@ describe('db', function () {
   })
 
   describe('tag-search queries', function () {
-    // FIXME it sure seems like there's a discrepency between {p,c}ouchdb here
-    // FIXME selector works in couchdb, fails in pouchdb
     it('should handle a solo term', async function () {
       const bookmarks = await db.searchTags('hello')
       assert.strict.equal(bookmarks.length, 1)
@@ -70,6 +71,10 @@ describe('db', function () {
     it('should handle a complex term', async function () {
       const bookmarks = await db.searchTags('+hello, -world')
       assert.strict.equal(bookmarks.length, 0)
+    })
+    it('should parse tags which are operands as tags', async function () {
+      const bookmarks = await db.searchTags('+')
+      assert.strict.equal(bookmarks.length, 1)
     })
   })
 })

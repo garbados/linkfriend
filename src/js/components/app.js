@@ -4,10 +4,10 @@ import createHashHistory from 'history/createHashHistory'
 import Router from 'preact-router'
 import { h, Component } from 'preact'
 
+import Bookmarks from './bookmarks'
 import db from '../lib/db'
-import Home from './home'
-import Nav from './nav'
-import Search from './search'
+import { Link } from 'preact-router/match'
+import { name, homepage } from '../../../package.json'
 
 export default class App extends Component {
   async componentDidMount () {
@@ -21,12 +21,20 @@ export default class App extends Component {
         <div class='container'>
           <div class='columns'>
             <div class='column is-narrow'>
-              <Nav />
+              <aside class='menu'>
+                <p class='menu-label'>
+                  { name }
+                </p>
+                <ul class='menu-list'>
+                  <Link activeClassName='is-active' href='/'><i class='fas fa-bookmark' /> Bookmarks</Link>
+                  <hr />
+                  <li><a href={homepage}><i class='fas fa-code' /> Source</a></li>
+                </ul>
+              </aside>
             </div>
             <div class='column'>
               <Router history={createHashHistory()}>
-                <Home default path='' />
-                <Search path='search' />
+                <Bookmarks default path='' />
               </Router>
             </div>
           </div>
