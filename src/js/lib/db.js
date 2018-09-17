@@ -81,27 +81,25 @@ PouchDB.plugin({
     return tags
   },
   _parseQuery: function (query) {
-    const tagSelector = query.split(',').map((term) => {
-      term = term.trim()
-      if (term[0] === '+') {
-        return ['$all', term.slice(1)]
-      } else if (term[0] === '-') {
-        return ['$nin', term.slice(1)]
+    const tagSelector = query.split(',').map((token) => {
+      const [ operand, term ] = token.trim().match(/^([+-]?)(.*)$/).slice(1, 3)
+      if (!operand && !term) {
+        return null
       } else {
-        return ['$in', term]
+        return [ operand, term ]
       }
+    }).filter((x) => {
+      return !!x
     }).reduce((selector, [operand, term]) => {
-      if (operand === '$all') {
+      if (!operand) {
+        if (!selector.$elemMatch) selector.$elemMatch = { $in: [] }
+        selector.$elemMatch.$in.push(term)
+      } else if (operand === '-') {
+        if (!selector.$allMatch) selector.$allMatch = { $nin: [] }
+        selector.$allMatch.$nin.push(term)
+      } else if (operand === '+') {
         if (!selector.$all) selector.$all = []
         selector.$all.push(term)
-      } else {
-        if (operand === '$nin') {
-          if (!selector.$allMatch) selector.$allMatch = { $nin: [] }
-          selector.$allMatch.$nin.push(term)
-        } else if (operand === '$in') {
-          if (!selector.$elemMatch) selector.$elemMatch = { $in: [] }
-          selector.$elemMatch.$in.push(term)
-        }
       }
       return selector
     }, {})
