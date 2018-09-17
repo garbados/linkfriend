@@ -5,7 +5,7 @@
   "main": "./src/js/index.js",
   "scripts": {
     "pretest": "standard",
-    "test": "mocha",
+    "test": "mocha --recursive --require @babel/register",
     "posttest": "npm audit",
     "prebuild": "mkdir -p build",
     "build": "run-p build:*",
@@ -15,6 +15,7 @@
     "build:html": "cp src/html/* build",
     "serve": "serve build",
     "start": "run-s build serve",
+    "predev": "npm run build",
     "dev": "run-p dev:* serve",
     "dev:css": "npm run build:css -- --watch",
     "dev:js": "sane 'npm run build:js' src/js",
@@ -40,6 +41,7 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@fortawesome/fontawesome-free": "^5.3.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
@@ -56,6 +58,7 @@
   },
   "dependencies": {
     "history": "^4.7.2",
+    "lodash.isequal": "^4.5.0",
     "pouchdb": "^7.0.0",
     "pouchdb-find": "^7.0.0",
     "preact": "^8.3.1",
@@ -80,31 +83,17 @@
       ]
     ]
   },
-  "jest": {
-    "testRegex": "/test/.*\\.js$",
-    "testPathIgnorePatterns": [
-      "/test/helpers/.*\\.js$"
-    ],
-    "collectCoverage": true,
-    "testEnvironment": "node",
-    "verbose": false
-  },
   "standard": {
     "env": {
-      "jest": true
+      "mocha": true
     },
     "globals": [
-      "jest",
-      "expect",
       "describe",
-      "test",
-      "beforeAll",
+      "it",
+      "before",
       "beforeEach",
-      "afterAll",
+      "after",
       "afterEach"
-    ],
-    "ignore": [
-      "couchdb"
     ]
   }
 }

@@ -28,13 +28,12 @@ class NewBookmark extends Component {
   render ({ bookmark, onSave, onCancel, persistent }) {
     const save = async (bookmark) => {
       await db.put(bookmark)
-      this.formRef.reset()
       await onSave()
     }
 
     return (
       <div>
-        <form ref={(el) => { this.formRef = el }} onSubmit={this.submit(bookmark, save)}>
+        <form onSubmit={this.submit(bookmark, save)}>
           <div class='field'>
             <div class='control'>
               <input
@@ -113,6 +112,11 @@ export default class Bookmark extends Component {
     const updatedAt = bookmark.updatedAt ? getHumanDate(bookmark.updatedAt) : ''
     const tags = bookmark.tags ? bookmark.tags.join(', ') : ''
 
+    const save = (options) => {
+      onSave(options)
+      this.toggleEdit()
+    }
+
     const remove = async () => {
       await db.remove(bookmark)
       await onDelete()
@@ -133,7 +137,7 @@ export default class Bookmark extends Component {
             <NewBookmark
               bookmark={bookmark}
               onCancel={toggleEdit}
-              onSave={onSave}
+              onSave={save}
               persistent={persistent}
             />
           </div>
