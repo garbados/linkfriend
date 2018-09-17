@@ -33,7 +33,7 @@ describe('db', function () {
   })
 
   it('smoke test', function () {
-    assert.strict.equal(db.name, name)
+    assert.strictEqual(db.name, name)
   })
 
   it('should setup twice ok', async function () {
@@ -43,12 +43,12 @@ describe('db', function () {
 
   it('should retrieve bookmarks only', async function () {
     const bookmarks = await db.getBookmarks()
-    assert.strict.equal(bookmarks.length, 3)
+    assert.strictEqual(bookmarks.length, 3)
   })
 
   it('should retrieve lists only', async function () {
     const lists = await db.getLists()
-    assert.strict.equal(lists.length, 1)
+    assert.strictEqual(lists.length, 1)
   })
 
   it('should get a list of all tags', async function () {
@@ -62,19 +62,19 @@ describe('db', function () {
   describe('tag-search queries', function () {
     it('should handle a solo term', async function () {
       const bookmarks = await db.searchTags('hello')
-      assert.strict.equal(bookmarks.length, 1)
+      assert.strictEqual(bookmarks.length, 1)
     })
     it('should handle a compound term', async function () {
       const bookmarks = await db.searchTags('hello, sheeple')
-      assert.strict.equal(bookmarks.length, 2)
+      assert.strictEqual(bookmarks.length, 2)
     })
     it('should handle a complex term', async function () {
       const bookmarks = await db.searchTags('+hello, -world')
-      assert.strict.equal(bookmarks.length, 0)
+      assert.strictEqual(bookmarks.length, 0)
     })
     it('should parse tags which are operands as tags', async function () {
       const bookmarks = await db.searchTags('+')
-      assert.strict.equal(bookmarks.length, 1)
+      assert.strictEqual(bookmarks.length, 1)
     })
   })
 })
