@@ -16,9 +16,9 @@ export default class SearchBookmark extends Component {
         <div class='content'>
           <Markdown markdown={bookmark.description} />
         </div>
-        { bookmark.tags ? (<p><small><em>Tags: { bookmark.tags }</em></small></p>) : (<p />) }
-        <p><small><em>Created: { bookmark.createdAt }</em></small></p>
-        { bookmark.updatedAt ? (<p><small><em>Updated: { bookmark.updatedAt }</em></small></p>) : (<p />) }
+        { bookmark.tags ? (<p><small><em>Tags: { tags }</em></small></p>) : (<p />) }
+        <p><small><em>Created: { createdAt }</em></small></p>
+        { updatedAt ? (<p><small><em>Updated: { updatedAt }</em></small></p>) : (<p />) }
       </div>
     )
   }

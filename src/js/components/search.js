@@ -15,47 +15,13 @@ export default class Search extends Component {
   submit () {
     return async (e) => {
       e.preventDefault()
-      log('Search:')
 
       const query = e.target.elements[0].value
-      log(`- Query: ${query}`)
-
-      const tagSelector = query.split(',').map((term) => {
-        term = term.trim()
-        if (term[0] === '+') {
-          return ['$all', term.slice(1)]
-        } else if (term[0] === '-') {
-          return ['$nin', term.slice(1)]
-        } else {
-          return ['$in', term]
-        }
-      }).reduce((selector, [operand, term]) => {
-        if (operand === '$all') {
-          if (!selector.$all) selector.$all = []
-          selector.$all.push(term)
-        } else {
-          if (!selector.$elemMatch) selector.$elemMatch = {}
-          if (operand === '$nin') {
-            if (!selector.$elemMatch.$nin) selector.$elemMatch.$nin = []
-            selector.$elemMatch.$nin.push(term)
-          } else if (operand === '$in') {
-            if (!selector.$elemMatch.$in) selector.$elemMatch.$in = []
-            selector.$elemMatch.$in.push(term)
-          }
-        }
-        return selector
-      }, {})
-      const selector = { tags: tagSelector }
-      log(`- Selector: ${JSON.stringify(selector)}`)
-
+      log(`Search query: ${query}`)
       try {
-        const { docs } = await db.find({
-          selector,
-          use_index: 'bookmark-tag-search'
-        })
-        log(`- Results: ${JSON.stringify(docs)}`)
-
-        this.setState({ bookmarks: docs })
+        const bookmarks = await db.searchTags(query)
+        log(`Search results: ${JSON.stringify(bookmarks)}`)
+        this.setState({ bookmarks })
       } catch (error) {
         log(`Unexpected error: ${JSON.stringify(error)}`)
       }
