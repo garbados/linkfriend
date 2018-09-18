@@ -6,7 +6,6 @@ import { h, Component } from 'preact'
 
 import Bookmarks from './bookmarks'
 import db from '../lib/db'
-import { Link } from 'preact-router/match'
 import { name, homepage } from '../../../package.json'
 
 export default class App extends Component {
@@ -22,11 +21,9 @@ export default class App extends Component {
           <div class='columns'>
             <div class='column is-narrow'>
               <aside class='menu'>
-                <p class='menu-label'>
-                  { name }
-                </p>
+                <p class='menu-label'>{ name }</p>
                 <ul class='menu-list'>
-                  <Link activeClassName='is-active' href='/'><i class='fas fa-bookmark' /> Bookmarks</Link>
+                  <li><a href='#/'><i class='fas fa-bookmark' /> Bookmarks</a></li>
                   <hr />
                   <li><a href={homepage}><i class='fas fa-code' /> Source</a></li>
                 </ul>
