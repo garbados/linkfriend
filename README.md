@@ -39,9 +39,9 @@ V0 implements basic features, like annotating bookmarks and searching them.
 	- [x] Description
 	- [x] Tags
 - [x] Search links by tags.
-- [ ] Implement typeaheads for
-	- [ ] Tags
-	- [ ] Search terms
+- [x] Implement typeaheads for
+	- [x] Tags
+	- [x] Search terms
 
 ### V1
 
@@ -52,7 +52,8 @@ V1 adds social features, like sharing lists of bookmarks.
 - [ ] Create lists with their own
 	- [ ] Titles
 	- [ ] Descriptions
-	- [ ] Tags
+	- [ ] Profile
+- [ ] Implement [profile archives](https://github.com/beakerbrowser/beaker/wiki/Dat-Library-and-User-profiles#profile-archives) for users to associate lists with a particular identity.
 - [ ] Implement typeaheads for
 	- [ ] Bookmark lists
 	- [ ] List tags
@@ -68,7 +69,7 @@ V2 introduces durability features like backups.
 
 ## Usage
 
-*These instructions are intended for the V1 application. The app is currently pre-V0.*
+*These instructions are intended for the V1 application. The app is currently at V0.*
 
 As the application lives on the browser, there is no need to install anything. Just visit the [demo site](https://garbados.github.io/p2p-social-bookmarking/#/) to start using it.
 
