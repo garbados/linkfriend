@@ -5,10 +5,23 @@ import { h, Component } from 'preact'
 
 import db from '../lib/db'
 import log from '../lib/log'
+import Typeahead from './typeahead'
 import uuidv4 from 'uuid/v4'
 import { getHumanDate } from '../lib/util'
 
 export default class NewBookmark extends Component {
+  constructor (props) {
+    super(props)
+    this.setState({
+      tags: []
+    })
+  }
+
+  async componentDidMount () {
+    const tags = await db.getTags()
+    this.setState({ tags })
+  }
+
   submit (bookmark = {}, save) {
     return (e) => {
       e.preventDefault()
@@ -31,7 +44,7 @@ export default class NewBookmark extends Component {
     }
   }
 
-  render ({ bookmark, onSave, onCancel }) {
+  render ({ bookmark, onSave, onCancel }, { tags }) {
     const save = async (bookmark) => {
       await db.put(bookmark)
       await onSave()
@@ -45,6 +58,7 @@ export default class NewBookmark extends Component {
               <div class='box'>
                 <div class='field'>
                   <div class='control'>
+                    <div class='label'>Title</div>
                     <input
                       class='input'
                       type='text'
@@ -55,6 +69,7 @@ export default class NewBookmark extends Component {
                 </div>
                 <div class='field'>
                   <div class='control'>
+                    <div class='label'>URL</div>
                     <input
                       class='input'
                       type='text'
@@ -65,9 +80,9 @@ export default class NewBookmark extends Component {
                 </div>
                 <div class='field'>
                   <div class='control'>
-                    <input
-                      class='input'
-                      type='text'
+                    <label class='label'>Description</label>
+                    <textarea
+                      class='textarea'
                       placeholder='Description'
                       value={bookmark ? bookmark.description : ''}
                     />
@@ -76,11 +91,11 @@ export default class NewBookmark extends Component {
                 </div>
                 <div class='field'>
                   <div class='control'>
-                    <input
-                      class='input'
-                      type='text'
+                    <Typeahead
+                      defaultInputValue={bookmark ? bookmark.tags.join(', ') : ''}
+                      label='Tags'
                       placeholder='Tags'
-                      value={bookmark ? bookmark.tags.join(', ') : ''}
+                      items={tags}
                     />
                   </div>
                   <p class='help'>Separate tags with commas. Tags are indexed for searching.</p>
