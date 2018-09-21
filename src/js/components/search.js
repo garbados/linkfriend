@@ -2,9 +2,23 @@
 
 import { h, Component } from 'preact'
 
+import db from '../lib/db'
 import log from '../lib/log'
+import Typeahead from './typeahead'
 
 export default class Search extends Component {
+  constructor (props) {
+    super(props)
+    this.setState({
+      tags: []
+    })
+  }
+
+  async componentDidMount () {
+    const tags = await db.getTags()
+    this.setState({ tags })
+  }
+
   submit (onQuery) {
     return async (e) => {
       e.preventDefault()
@@ -15,7 +29,7 @@ export default class Search extends Component {
     }
   }
 
-  render ({ onQuery }) {
+  render ({ onQuery }, { tags }) {
     const { bookmarks } = this.state
     return (
       <form onSubmit={this.submit(onQuery)}>
@@ -23,10 +37,10 @@ export default class Search extends Component {
           <div class='column'>
             <div class='field'>
               <div class='control'>
-                <input
-                  class='input'
-                  type='text'
+                <Typeahead
+                  label='Search'
                   placeholder='Search'
+                  items={tags}
                 />
               </div>
               <p class='help'>
