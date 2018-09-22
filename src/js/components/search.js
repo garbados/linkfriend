@@ -6,6 +6,36 @@ import db from '../lib/db'
 import log from '../lib/log'
 import Typeahead from './typeahead'
 
+class SearchTypeahead extends Typeahead {
+  getMenuItems ({ getInputProps, getItemProps, highlightedIndex, inputValue, items }) {
+    const entries = inputValue.split(',').map(s => s.trim())
+    const currentEntries = entries.slice(0, -1)
+    let pendingEntry = entries.slice(-1)[0]
+    let operand = ''
+    if (pendingEntry[0] === '-' || pendingEntry[0] === '+') {
+      operand = pendingEntry[0]
+      pendingEntry = pendingEntry.slice(1)
+    }
+    return pendingEntry.length
+      ? items
+        .filter((item, index) => {
+          return item.includes(pendingEntry) && !currentEntries.includes(item)
+        })
+        .map((item, index) => (
+          <li
+            {...getItemProps({
+              key: item,
+              index,
+              item: [...currentEntries, `${operand}${item}`].join(', ')
+            })}
+          >
+            <a class={highlightedIndex === index ? 'is-active' : ''}>{item}</a>
+          </li>
+        ))
+      : null
+  }
+}
+
 export default class Search extends Component {
   constructor (props) {
     super(props)
@@ -37,7 +67,7 @@ export default class Search extends Component {
           <div class='column'>
             <div class='field'>
               <div class='control'>
-                <Typeahead
+                <SearchTypeahead
                   label='Search'
                   placeholder='Search'
                   items={tags}

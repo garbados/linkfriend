@@ -11,6 +11,48 @@ export default class Typeahead extends Component {
     })
   }
 
+  getMenuItems ({ getInputProps, getItemProps, highlightedIndex, inputValue, items }) {
+    const entries = inputValue.split(',').map(s => s.trim())
+    const currentEntries = entries.slice(0, -1)
+    const pendingEntry = entries.slice(-1)[0]
+    return pendingEntry.length
+      ? items
+        .filter((item, index) => {
+          return item.includes(pendingEntry) && !currentEntries.includes(item)
+        })
+        .map((item, index) => (
+          <li
+            {...getItemProps({
+              key: item,
+              index,
+              item: [...currentEntries, item].join(', ')
+            })}
+          >
+            <a class={highlightedIndex === index ? 'is-active' : ''}>{item}</a>
+          </li>
+        ))
+      : null
+  }
+
+  getMenu ({
+    getMenuProps,
+    isOpen,
+    menuItems,
+  }) {
+    return (isOpen && menuItems && menuItems.length)
+      ? (
+        <aside class='menu'>
+          <ul {...getMenuProps({
+            isOpen,
+            class: 'menu-list box'
+          })}>
+            {menuItems}
+          </ul>
+        </aside>
+      )
+      : null
+  }
+
   render ({
     label,
     placeholder,
@@ -18,62 +60,24 @@ export default class Typeahead extends Component {
   }, {
     inputValue
   }) {
-    const getItems = ({
-      isOpen,
-      inputValue,
-      getItemProps,
-      highlightedIndex
-    }) => {
-    }
     return (
       <Downshift defaultInputValue={inputValue}>
-        {({
-          getInputProps,
-          getItemProps,
-          getLabelProps,
-          getMenuProps,
-          highlightedIndex,
-          inputValue,
-          isOpen,
-          selectedItem
-        }) => {
-          const entries = inputValue.split(',').map(s => s.trim())
-          const currentEntries = entries.slice(0, -1)
-          const pendingEntry = entries.slice(-1)
-          const menuItems = pendingEntry.length
-            ? items
-              .filter((item, index) => {
-                return item.includes(pendingEntry) && !currentEntries.includes(item)
-              })
-              .map((item, index) => (
-                <li
-                  {...getItemProps({
-                    key: item,
-                    index,
-                    item: [...currentEntries, item].join(', ')
-                  })}
-                >
-                  <a class={highlightedIndex === index ? 'is-active' : ''}>{item}</a>
-                </li>
-              ))
-            : null
-          const menu = (isOpen && menuItems.length)
-            ? (
-              <aside class='menu'>
-                <ul {...getMenuProps({
-                  isOpen,
-                  class: 'menu-list box'
-                })}>
-                  {menuItems}
-                </ul>
-              </aside>
-            )
-            : null
+        {(downshift) => {
+          const menuItems = this.getMenuItems({
+            items,
+            ...downshift
+          })
+          const menu = this.getMenu({
+            label,
+            menuItems,
+            placeholder,
+            ...downshift
+          })
           return (
             <div>
-              <label {...getLabelProps({ class: 'label' })}>{label}</label>
+              <label {...downshift.getLabelProps({ class: 'label' })}>{label}</label>
               <input
-                {...getInputProps({
+                {...downshift.getInputProps({
                   class: 'input',
                   type: 'text',
                   placeholder
