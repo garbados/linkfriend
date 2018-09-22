@@ -19,6 +19,13 @@ const designTags = {
         }
       }.toString(),
       reduce: '_count'
+    },
+    dateSort: {
+      map: function (doc) {
+        if (/^bookmark/.test(doc._id) && doc.createdAt) {
+          emit(doc.createdAt)
+        }
+      }.toString()
     }
   }
 }
@@ -64,8 +71,16 @@ PouchDB.plugin({
     })
     return docs
   },
+  hasBookmarks: async function (options = {}) {
+    // TODO
+  },
   getBookmarks: async function (options = {}) {
-    const bookmarks = await this.getType('bookmark', options)
+    const { rows } = await this.query('tags/dateSort', {
+      include_docs: true,
+      descending: true,
+      ...options
+    })
+    const bookmarks = rows.map(({ doc }) => { return doc })
     return bookmarks
   },
   getLists: async function (options = {}) {

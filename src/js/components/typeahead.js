@@ -63,6 +63,10 @@ export default class Typeahead extends Component {
     return (
       <Downshift defaultInputValue={inputValue}>
         {(downshift) => {
+          const {
+            getInputProps,
+            getLabelProps
+          } = downshift
           const menuItems = this.getMenuItems({
             items,
             ...downshift
@@ -75,9 +79,9 @@ export default class Typeahead extends Component {
           })
           return (
             <div>
-              <label {...downshift.getLabelProps({ class: 'label' })}>{label}</label>
+              <label {...getLabelProps({ class: 'label' })}>{label}</label>
               <input
-                {...downshift.getInputProps({
+                {...getInputProps({
                   class: 'input',
                   type: 'text',
                   placeholder

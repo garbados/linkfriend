@@ -63,34 +63,28 @@ export default class Search extends Component {
     const { bookmarks } = this.state
     return (
       <form onSubmit={this.submit(onQuery)}>
-        <div class='columns'>
-          <div class='column'>
-            <div class='field'>
-              <div class='control'>
-                <SearchTypeahead
-                  label='Search'
-                  placeholder='Search'
-                  items={tags}
-                />
-              </div>
-              <p class='help'>
-                Search by tags. Separate terms with ','.
-                Precede terms with '+' to require a term,
-                '-' to exclude it.
-              </p>
-            </div>
+        <div class='field'>
+          <div class='control'>
+            <SearchTypeahead
+              label='Search'
+              placeholder='Search'
+              items={tags}
+            />
           </div>
-          <div class='column is-narrow'>
-            <div class='field'>
-              <p class='control'>
-                <input
-                  type='submit'
-                  class='button is-fullwidth is-success'
-                  value='Search'
-                />
-              </p>
-            </div>
+        </div>
+        <div class='field'>
+          <div class='control'>
+            <input
+              type='submit'
+              class='button is-fullwidth is-success'
+              value='Search'
+            />
           </div>
+          <p class='help'>
+            Search by tags. Separate terms with ','.
+            Precede terms with '+' to require a term,
+            '-' to exclude it.
+          </p>
         </div>
       </form>
     )
