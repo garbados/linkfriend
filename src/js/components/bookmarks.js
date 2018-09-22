@@ -12,17 +12,33 @@ import Welcome from './welcome'
 export default class Bookmarks extends Component {
   constructor (props) {
     super(props)
-    this.state = { bookmarks: [], newBookmark: false }
+    this.reset()
+    this.setState({ loading: true })
+  }
+
+  reset () {
+    this.setState({
+      hasBookmarks: false,
+      bookmarks: [],
+      newBookmark: false
+    })
   }
 
   async reload (query = null) {
+    const hasBookmarks = await db.hasBookmarks()
+    if (!hasBookmarks) return this.reset()
     let docs
     if (query) {
       docs = await db.searchTags(query)
     } else {
       docs = await db.getBookmarks()
     }
-    this.setState({ bookmarks: docs, newBookmark: false })
+    this.setState({
+      loading: false,
+      hasBookmarks: true,
+      bookmarks: docs,
+      newBookmark: false
+    })
   }
 
   async componentDidMount () {
@@ -49,7 +65,12 @@ export default class Bookmarks extends Component {
 
   render () {
     // render bookmarks if any exist
-    const { bookmarks, newBookmark } = this.state
+    const {
+      bookmarks,
+      hasBookmarks,
+      loading,
+      newBookmark
+    } = this.state
     const toggleNewBookmark = this.toggleNewBookmark.bind(this)
     const reload = this.reload.bind(this)
     const rendered = bookmarks.map((bookmark) => {
@@ -57,13 +78,18 @@ export default class Bookmarks extends Component {
     })
     return (
       <div>
-        { bookmarks.length === 0 ? (
+        { !hasBookmarks ? (
           <div>
             <Welcome />
             <hr />
           </div>
         ) : (<div />) }
         <h1 class='title'>Bookmarks</h1>
+        { loading ? (
+          <h2 class='subtitle'>Loading</h2>
+        ) : (
+          <div />
+        )}
         { newBookmark ? (
           <div>
             <h2 class='subtitle'>Add new bookmark</h2>

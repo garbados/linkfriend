@@ -37,7 +37,7 @@ export default class Typeahead extends Component {
   getMenu ({
     getMenuProps,
     isOpen,
-    menuItems,
+    menuItems
   }) {
     return (isOpen && menuItems && menuItems.length)
       ? (
@@ -53,6 +53,14 @@ export default class Typeahead extends Component {
       : null
   }
 
+  handleStateChange (changes) {
+    if (changes.hasOwnProperty('selectedItem')) {
+      this.setState({ inputValue: changes.selectedItem })
+    } else if (changes.hasOwnProperty('inputValue')) {
+      this.setState({ inputValue: changes.inputValue })
+    }
+  }
+
   render ({
     label,
     placeholder,
@@ -61,7 +69,11 @@ export default class Typeahead extends Component {
     inputValue
   }) {
     return (
-      <Downshift defaultInputValue={inputValue}>
+      <Downshift
+        defaultInputValue={inputValue}
+        selectedItem={inputValue}
+        onStateChange={this.handleStateChange.bind(this)}
+      >
         {(downshift) => {
           const {
             getInputProps,

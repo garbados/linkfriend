@@ -10,21 +10,25 @@ describe('db', function () {
       _id: 'bookmark:1',
       description: 'hello world',
       url: 'https://bovid.space',
-      tags: ['hello', 'world']
+      tags: ['hello', 'world'],
+      createdAt: Date.now()
     }, {
       _id: 'bookmark:2',
       description: 'wake up sheeple! it is time for breakfast',
       url: 'https://bovid.space',
-      tags: ['sheeple']
+      tags: ['sheeple'],
+      createdAt: Date.now() + 1
     }, {
       _id: 'bookmark:3',
       description: 'ups and downs',
       url: 'https://bovid.space',
-      tags: ['-', '+']
+      tags: ['-', '+'],
+      createdAt: Date.now() + 2
     }, {
       _id: 'list:1',
       title: 'sheep posts',
-      description: 'posts about sheep including sheeple'
+      description: 'posts about sheep including sheeple',
+      createdAt: Date.now() + 3
     }])
   })
 
