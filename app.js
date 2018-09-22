@@ -25050,20 +25050,33 @@ function (_Component) {
 
     (0, _classCallCheck2.default)(this, Bookmarks);
     _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(Bookmarks).call(this, props));
-    _this.state = {
-      bookmarks: [],
-      newBookmark: false
-    };
+
+    _this.reset();
+
+    _this.setState({
+      loading: true
+    });
+
     return _this;
   }
 
   (0, _createClass2.default)(Bookmarks, [{
+    key: "reset",
+    value: function reset() {
+      this.setState({
+        hasBookmarks: false,
+        bookmarks: [],
+        newBookmark: false
+      });
+    }
+  }, {
     key: "reload",
     value: function () {
       var _reload = (0, _asyncToGenerator2.default)(
       /*#__PURE__*/
       _regenerator.default.mark(function _callee() {
         var query,
+            hasBookmarks,
             docs,
             _args = arguments;
         return _regenerator.default.wrap(function _callee$(_context) {
@@ -25071,34 +25084,49 @@ function (_Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 query = _args.length > 0 && _args[0] !== undefined ? _args[0] : null;
+                _context.next = 3;
+                return _db.default.hasBookmarks();
 
-                if (!query) {
-                  _context.next = 7;
+              case 3:
+                hasBookmarks = _context.sent;
+
+                if (hasBookmarks) {
+                  _context.next = 6;
                   break;
                 }
 
-                _context.next = 4;
-                return _db.default.searchTags(query);
+                return _context.abrupt("return", this.reset());
 
-              case 4:
-                docs = _context.sent;
-                _context.next = 10;
-                break;
+              case 6:
+                if (!query) {
+                  _context.next = 12;
+                  break;
+                }
 
-              case 7:
                 _context.next = 9;
-                return _db.default.getBookmarks();
+                return _db.default.searchTags(query);
 
               case 9:
                 docs = _context.sent;
+                _context.next = 15;
+                break;
 
-              case 10:
+              case 12:
+                _context.next = 14;
+                return _db.default.getBookmarks();
+
+              case 14:
+                docs = _context.sent;
+
+              case 15:
                 this.setState({
+                  loading: false,
+                  hasBookmarks: true,
                   bookmarks: docs,
                   newBookmark: false
                 });
 
-              case 11:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -25161,15 +25189,19 @@ function (_Component) {
       // render bookmarks if any exist
       var _this$state = this.state,
           bookmarks = _this$state.bookmarks,
+          hasBookmarks = _this$state.hasBookmarks,
+          loading = _this$state.loading,
           newBookmark = _this$state.newBookmark;
       var toggleNewBookmark = this.toggleNewBookmark.bind(this);
       var reload = this.reload.bind(this);
       var rendered = bookmarks.map(function (bookmark) {
         return _this2.renderBookmark(bookmark);
       });
-      return (0, _preact.h)("div", null, bookmarks.length === 0 ? (0, _preact.h)("div", null, (0, _preact.h)(_welcome.default, null), (0, _preact.h)("hr", null)) : (0, _preact.h)("div", null), (0, _preact.h)("h1", {
+      return (0, _preact.h)("div", null, !hasBookmarks ? (0, _preact.h)("div", null, (0, _preact.h)(_welcome.default, null), (0, _preact.h)("hr", null)) : (0, _preact.h)("div", null), (0, _preact.h)("h1", {
         "class": 'title'
-      }, "Bookmarks"), newBookmark ? (0, _preact.h)("div", null, (0, _preact.h)("h2", {
+      }, "Bookmarks"), loading ? (0, _preact.h)("h2", {
+        "class": 'subtitle'
+      }, "Loading") : (0, _preact.h)("div", null), newBookmark ? (0, _preact.h)("div", null, (0, _preact.h)("h2", {
         "class": 'subtitle'
       }, "Add new bookmark"), (0, _preact.h)(_newBookmark.default, {
         onSave: reload,
@@ -25441,6 +25473,8 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
@@ -25460,6 +25494,52 @@ var _log = _interopRequireDefault(require("../lib/log"));
 var _typeahead = _interopRequireDefault(require("./typeahead"));
 
 /* eslint-disable no-unused-vars */
+var SearchTypeahead =
+/*#__PURE__*/
+function (_Typeahead) {
+  (0, _inherits2.default)(SearchTypeahead, _Typeahead);
+
+  function SearchTypeahead() {
+    (0, _classCallCheck2.default)(this, SearchTypeahead);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(SearchTypeahead).apply(this, arguments));
+  }
+
+  (0, _createClass2.default)(SearchTypeahead, [{
+    key: "getMenuItems",
+    value: function getMenuItems(_ref) {
+      var getInputProps = _ref.getInputProps,
+          getItemProps = _ref.getItemProps,
+          highlightedIndex = _ref.highlightedIndex,
+          inputValue = _ref.inputValue,
+          items = _ref.items;
+      var entries = inputValue.split(',').map(function (s) {
+        return s.trim();
+      });
+      var currentEntries = entries.slice(0, -1);
+      var pendingEntry = entries.slice(-1)[0];
+      var operand = '';
+
+      if (pendingEntry[0] === '-' || pendingEntry[0] === '+') {
+        operand = pendingEntry[0];
+        pendingEntry = pendingEntry.slice(1);
+      }
+
+      return pendingEntry.length ? items.filter(function (item, index) {
+        return item.includes(pendingEntry) && !currentEntries.includes(item);
+      }).map(function (item, index) {
+        return (0, _preact.h)("li", getItemProps({
+          key: item,
+          index: index,
+          item: (0, _toConsumableArray2.default)(currentEntries).concat(["".concat(operand).concat(item)]).join(', ')
+        }), (0, _preact.h)("a", {
+          "class": highlightedIndex === index ? 'is-active' : ''
+        }, item));
+      }) : null;
+    }
+  }]);
+  return SearchTypeahead;
+}(_typeahead.default);
+
 var Search =
 /*#__PURE__*/
 function (_Component) {
@@ -25516,7 +25596,7 @@ function (_Component) {
       return (
         /*#__PURE__*/
         function () {
-          var _ref = (0, _asyncToGenerator2.default)(
+          var _ref2 = (0, _asyncToGenerator2.default)(
           /*#__PURE__*/
           _regenerator.default.mark(function _callee2(e) {
             var query;
@@ -25538,44 +25618,38 @@ function (_Component) {
           }));
 
           return function (_x) {
-            return _ref.apply(this, arguments);
+            return _ref2.apply(this, arguments);
           };
         }()
       );
     }
   }, {
     key: "render",
-    value: function render(_ref2, _ref3) {
-      var onQuery = _ref2.onQuery;
-      var tags = _ref3.tags;
+    value: function render(_ref3, _ref4) {
+      var onQuery = _ref3.onQuery;
+      var tags = _ref4.tags;
       var bookmarks = this.state.bookmarks;
       return (0, _preact.h)("form", {
         onSubmit: this.submit(onQuery)
       }, (0, _preact.h)("div", {
-        "class": 'columns'
-      }, (0, _preact.h)("div", {
-        "class": 'column'
-      }, (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("div", {
         "class": 'control'
-      }, (0, _preact.h)(_typeahead.default, {
+      }, (0, _preact.h)(SearchTypeahead, {
         label: 'Search',
         placeholder: 'Search',
         items: tags
-      })), (0, _preact.h)("p", {
-        "class": 'help'
-      }, "Search by tags. Separate terms with ','. Precede terms with '+' to require a term, '-' to exclude it."))), (0, _preact.h)("div", {
-        "class": 'column is-narrow'
-      }, (0, _preact.h)("div", {
+      }))), (0, _preact.h)("div", {
         "class": 'field'
-      }, (0, _preact.h)("p", {
+      }, (0, _preact.h)("div", {
         "class": 'control'
       }, (0, _preact.h)("input", {
         type: 'submit',
         "class": 'button is-fullwidth is-success',
         value: 'Search'
-      }))))));
+      })), (0, _preact.h)("p", {
+        "class": 'help'
+      }, "Search by tags. Separate terms with ','. Precede terms with '+' to require a term, '-' to exclude it.")));
     }
   }]);
   return Search;
@@ -25583,7 +25657,7 @@ function (_Component) {
 
 exports.default = Search;
 
-},{"../lib/db":83,"../lib/log":84,"./typeahead":80,"@babel/runtime/helpers/asyncToGenerator":4,"@babel/runtime/helpers/classCallCheck":5,"@babel/runtime/helpers/createClass":6,"@babel/runtime/helpers/getPrototypeOf":8,"@babel/runtime/helpers/inherits":9,"@babel/runtime/helpers/interopRequireDefault":10,"@babel/runtime/helpers/possibleConstructorReturn":16,"@babel/runtime/regenerator":23,"preact":63}],79:[function(require,module,exports){
+},{"../lib/db":83,"../lib/log":84,"./typeahead":80,"@babel/runtime/helpers/asyncToGenerator":4,"@babel/runtime/helpers/classCallCheck":5,"@babel/runtime/helpers/createClass":6,"@babel/runtime/helpers/getPrototypeOf":8,"@babel/runtime/helpers/inherits":9,"@babel/runtime/helpers/interopRequireDefault":10,"@babel/runtime/helpers/possibleConstructorReturn":16,"@babel/runtime/helpers/toConsumableArray":19,"@babel/runtime/regenerator":23,"preact":63}],79:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -25656,6 +25730,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _objectSpread2 = _interopRequireDefault(require("@babel/runtime/helpers/objectSpread"));
+
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
@@ -25692,53 +25768,83 @@ function (_Component) {
   }
 
   (0, _createClass2.default)(Typeahead, [{
-    key: "render",
-    value: function render(_ref, _ref2) {
-      var label = _ref.label,
-          placeholder = _ref.placeholder,
+    key: "getMenuItems",
+    value: function getMenuItems(_ref) {
+      var getInputProps = _ref.getInputProps,
+          getItemProps = _ref.getItemProps,
+          highlightedIndex = _ref.highlightedIndex,
+          inputValue = _ref.inputValue,
           items = _ref.items;
-      var inputValue = _ref2.inputValue;
-
-      var getItems = function getItems(_ref3) {
-        var isOpen = _ref3.isOpen,
-            inputValue = _ref3.inputValue,
-            getItemProps = _ref3.getItemProps,
-            highlightedIndex = _ref3.highlightedIndex;
-      };
-
-      return (0, _preact2.h)(_preact.default, {
-        defaultInputValue: inputValue
-      }, function (_ref4) {
-        var getInputProps = _ref4.getInputProps,
-            getItemProps = _ref4.getItemProps,
-            getLabelProps = _ref4.getLabelProps,
-            getMenuProps = _ref4.getMenuProps,
-            highlightedIndex = _ref4.highlightedIndex,
-            inputValue = _ref4.inputValue,
-            isOpen = _ref4.isOpen,
-            selectedItem = _ref4.selectedItem;
-        var entries = inputValue.split(',').map(function (s) {
-          return s.trim();
+      var entries = inputValue.split(',').map(function (s) {
+        return s.trim();
+      });
+      var currentEntries = entries.slice(0, -1);
+      var pendingEntry = entries.slice(-1)[0];
+      return pendingEntry.length ? items.filter(function (item, index) {
+        return item.includes(pendingEntry) && !currentEntries.includes(item);
+      }).map(function (item, index) {
+        return (0, _preact2.h)("li", getItemProps({
+          key: item,
+          index: index,
+          item: (0, _toConsumableArray2.default)(currentEntries).concat([item]).join(', ')
+        }), (0, _preact2.h)("a", {
+          "class": highlightedIndex === index ? 'is-active' : ''
+        }, item));
+      }) : null;
+    }
+  }, {
+    key: "getMenu",
+    value: function getMenu(_ref2) {
+      var getMenuProps = _ref2.getMenuProps,
+          isOpen = _ref2.isOpen,
+          menuItems = _ref2.menuItems;
+      return isOpen && menuItems && menuItems.length ? (0, _preact2.h)("aside", {
+        "class": 'menu'
+      }, (0, _preact2.h)("ul", getMenuProps({
+        isOpen: isOpen,
+        class: 'menu-list box'
+      }), menuItems)) : null;
+    }
+  }, {
+    key: "handleStateChange",
+    value: function handleStateChange(changes) {
+      if (changes.hasOwnProperty('selectedItem')) {
+        this.setState({
+          inputValue: changes.selectedItem
         });
-        var currentEntries = entries.slice(0, -1);
-        var pendingEntry = entries.slice(-1);
-        var menuItems = pendingEntry.length ? items.filter(function (item, index) {
-          return item.includes(pendingEntry) && !currentEntries.includes(item);
-        }).map(function (item, index) {
-          return (0, _preact2.h)("li", getItemProps({
-            key: item,
-            index: index,
-            item: (0, _toConsumableArray2.default)(currentEntries).concat([item]).join(', ')
-          }), (0, _preact2.h)("a", {
-            "class": highlightedIndex === index ? 'is-active' : ''
-          }, item));
-        }) : null;
-        var menu = isOpen && menuItems.length ? (0, _preact2.h)("aside", {
-          "class": 'menu'
-        }, (0, _preact2.h)("ul", getMenuProps({
-          isOpen: isOpen,
-          class: 'menu-list box'
-        }), menuItems)) : null;
+      } else if (changes.hasOwnProperty('inputValue')) {
+        this.setState({
+          inputValue: changes.inputValue
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render(_ref3, _ref4) {
+      var _this2 = this;
+
+      var label = _ref3.label,
+          placeholder = _ref3.placeholder,
+          items = _ref3.items;
+      var inputValue = _ref4.inputValue;
+      return (0, _preact2.h)(_preact.default, {
+        defaultInputValue: inputValue,
+        selectedItem: inputValue,
+        onStateChange: this.handleStateChange.bind(this)
+      }, function (downshift) {
+        var getInputProps = downshift.getInputProps,
+            getLabelProps = downshift.getLabelProps;
+
+        var menuItems = _this2.getMenuItems((0, _objectSpread2.default)({
+          items: items
+        }, downshift));
+
+        var menu = _this2.getMenu((0, _objectSpread2.default)({
+          label: label,
+          menuItems: menuItems,
+          placeholder: placeholder
+        }, downshift));
+
         return (0, _preact2.h)("div", null, (0, _preact2.h)("label", getLabelProps({
           class: 'label'
         }), label), (0, _preact2.h)("input", getInputProps({
@@ -25754,7 +25860,7 @@ function (_Component) {
 
 exports.default = Typeahead;
 
-},{"@babel/runtime/helpers/classCallCheck":5,"@babel/runtime/helpers/createClass":6,"@babel/runtime/helpers/getPrototypeOf":8,"@babel/runtime/helpers/inherits":9,"@babel/runtime/helpers/interopRequireDefault":10,"@babel/runtime/helpers/possibleConstructorReturn":16,"@babel/runtime/helpers/toConsumableArray":19,"downshift/preact":26,"preact":63}],81:[function(require,module,exports){
+},{"@babel/runtime/helpers/classCallCheck":5,"@babel/runtime/helpers/createClass":6,"@babel/runtime/helpers/getPrototypeOf":8,"@babel/runtime/helpers/inherits":9,"@babel/runtime/helpers/interopRequireDefault":10,"@babel/runtime/helpers/objectSpread":15,"@babel/runtime/helpers/possibleConstructorReturn":16,"@babel/runtime/helpers/toConsumableArray":19,"downshift/preact":26,"preact":63}],81:[function(require,module,exports){
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -25864,6 +25970,13 @@ var designTags = {
         }
       }.toString(),
       reduce: '_count'
+    },
+    dateSort: {
+      map: function (doc) {
+        if (/^bookmark/.test(doc._id) && doc.createdAt) {
+          emit(doc.createdAt);
+        }
+      }.toString()
     }
   }
 };
@@ -25979,12 +26092,13 @@ _pouchdb.default.plugin({
       return _getType.apply(this, arguments);
     };
   }(),
-  getBookmarks: function () {
-    var _getBookmarks = (0, _asyncToGenerator2.default)(
+  hasBookmarks: function () {
+    var _hasBookmarks = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
     _regenerator.default.mark(function _callee3() {
       var options,
-          bookmarks,
+          result,
+          total,
           _args3 = arguments;
       return _regenerator.default.wrap(function _callee3$(_context3) {
         while (1) {
@@ -25992,18 +26106,61 @@ _pouchdb.default.plugin({
             case 0:
               options = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : {};
               _context3.next = 3;
-              return this.getType('bookmark', options);
+              return this.query('tags/dateSort', (0, _objectSpread2.default)({}, options));
 
             case 3:
-              bookmarks = _context3.sent;
-              return _context3.abrupt("return", bookmarks);
+              result = _context3.sent;
+              total = result.total_rows;
+              return _context3.abrupt("return", total > 0);
 
-            case 5:
+            case 6:
             case "end":
               return _context3.stop();
           }
         }
       }, _callee3, this);
+    }));
+
+    return function hasBookmarks() {
+      return _hasBookmarks.apply(this, arguments);
+    };
+  }(),
+  getBookmarks: function () {
+    var _getBookmarks = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee4() {
+      var options,
+          _ref2,
+          rows,
+          bookmarks,
+          _args4 = arguments;
+
+      return _regenerator.default.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              options = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : {};
+              _context4.next = 3;
+              return this.query('tags/dateSort', (0, _objectSpread2.default)({
+                include_docs: true,
+                descending: true
+              }, options));
+
+            case 3:
+              _ref2 = _context4.sent;
+              rows = _ref2.rows;
+              bookmarks = rows.map(function (_ref3) {
+                var doc = _ref3.doc;
+                return doc;
+              });
+              return _context4.abrupt("return", bookmarks);
+
+            case 7:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this);
     }));
 
     return function getBookmarks() {
@@ -26013,28 +26170,28 @@ _pouchdb.default.plugin({
   getLists: function () {
     var _getLists = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee4() {
+    _regenerator.default.mark(function _callee5() {
       var options,
           lists,
-          _args4 = arguments;
-      return _regenerator.default.wrap(function _callee4$(_context4) {
+          _args5 = arguments;
+      return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              options = _args4.length > 0 && _args4[0] !== undefined ? _args4[0] : {};
-              _context4.next = 3;
+              options = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : {};
+              _context5.next = 3;
               return this.getType('list', options);
 
             case 3:
-              lists = _context4.sent;
-              return _context4.abrupt("return", lists);
+              lists = _context5.sent;
+              return _context5.abrupt("return", lists);
 
             case 5:
             case "end":
-              return _context4.stop();
+              return _context5.stop();
           }
         }
-      }, _callee4, this);
+      }, _callee5, this);
     }));
 
     return function getLists() {
@@ -26044,38 +26201,38 @@ _pouchdb.default.plugin({
   getTags: function () {
     var _getTags = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee5() {
+    _regenerator.default.mark(function _callee6() {
       var options,
-          _ref2,
+          _ref4,
           rows,
           tags,
-          _args5 = arguments;
+          _args6 = arguments;
 
-      return _regenerator.default.wrap(function _callee5$(_context5) {
+      return _regenerator.default.wrap(function _callee6$(_context6) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context6.prev = _context6.next) {
             case 0:
-              options = _args5.length > 0 && _args5[0] !== undefined ? _args5[0] : {};
-              _context5.next = 3;
+              options = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : {};
+              _context6.next = 3;
               return this.query('tags/listTags', (0, _objectSpread2.default)({
                 group: true
               }, options));
 
             case 3:
-              _ref2 = _context5.sent;
-              rows = _ref2.rows;
-              tags = rows.map(function (_ref3) {
-                var key = _ref3.key;
+              _ref4 = _context6.sent;
+              rows = _ref4.rows;
+              tags = rows.map(function (_ref5) {
+                var key = _ref5.key;
                 return key;
               });
-              return _context5.abrupt("return", tags);
+              return _context6.abrupt("return", tags);
 
             case 7:
             case "end":
-              return _context5.stop();
+              return _context6.stop();
           }
         }
-      }, _callee5, this);
+      }, _callee6, this);
     }));
 
     return function getTags() {
@@ -26099,10 +26256,10 @@ _pouchdb.default.plugin({
       }
     }).filter(function (x) {
       return !!x;
-    }).reduce(function (selector, _ref4) {
-      var _ref5 = (0, _slicedToArray2.default)(_ref4, 2),
-          operand = _ref5[0],
-          term = _ref5[1];
+    }).reduce(function (selector, _ref6) {
+      var _ref7 = (0, _slicedToArray2.default)(_ref6, 2),
+          operand = _ref7[0],
+          term = _ref7[1];
 
       if (!operand) {
         if (!selector.$elemMatch) selector.$elemMatch = {
@@ -26132,31 +26289,31 @@ _pouchdb.default.plugin({
   searchTags: function () {
     var _searchTags = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
-    _regenerator.default.mark(function _callee6(query) {
-      var selector, _ref6, docs;
+    _regenerator.default.mark(function _callee7(query) {
+      var selector, _ref8, docs;
 
-      return _regenerator.default.wrap(function _callee6$(_context6) {
+      return _regenerator.default.wrap(function _callee7$(_context7) {
         while (1) {
-          switch (_context6.prev = _context6.next) {
+          switch (_context7.prev = _context7.next) {
             case 0:
               selector = this._parseQuery(query);
-              _context6.next = 3;
+              _context7.next = 3;
               return this.find({
                 selector: selector,
                 use_index: 'tag-search'
               });
 
             case 3:
-              _ref6 = _context6.sent;
-              docs = _ref6.docs;
-              return _context6.abrupt("return", docs);
+              _ref8 = _context7.sent;
+              docs = _ref8.docs;
+              return _context7.abrupt("return", docs);
 
             case 6:
             case "end":
-              return _context6.stop();
+              return _context7.stop();
           }
         }
-      }, _callee6, this);
+      }, _callee7, this);
     }));
 
     return function searchTags(_x3) {
