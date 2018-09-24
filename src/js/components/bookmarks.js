@@ -20,7 +20,8 @@ export default class Bookmarks extends Component {
     this.setState({
       hasBookmarks: false,
       bookmarks: [],
-      newBookmark: false
+      newBookmark: false,
+      loading: false
     })
   }
 
@@ -76,45 +77,51 @@ export default class Bookmarks extends Component {
     const rendered = bookmarks.map((bookmark) => {
       return this.renderBookmark(bookmark)
     })
-    return (
-      <div>
-        { !hasBookmarks ? (
-          <div>
-            <Welcome />
-            <hr />
-          </div>
-        ) : (<div />) }
-        <h1 class='title'>Bookmarks</h1>
-        { loading ? (
-          <h2 class='subtitle'>Loading</h2>
-        ) : (
-          <div />
-        )}
-        { newBookmark ? (
-          <div>
-            <h2 class='subtitle'>Add new bookmark</h2>
-            <NewBookmark onSave={reload} onCancel={toggleNewBookmark} />
-          </div>
-        ) : (
-          <div>
-            <button class='button is-fullwidth is-info' onClick={toggleNewBookmark}>Add new bookmark</button>
-          </div>
-        )}
-        { rendered.length ? (
-          <div>
-            <hr />
-            <h2 class='subtitle'>Search bookmarks by tag</h2>
-            <Search onQuery={reload} />
-            <hr />
-            { rendered }
-          </div>
-        ) : (
-          <div>
-            <hr />
-            <p>No bookmarks.</p>
-          </div>
-        ) }
-      </div>
-    )
+    if (loading) {
+      return (
+        <div>
+          <h2 class='subtitle'>Loading...</h2>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          { !hasBookmarks ? (
+            <div>
+              <Welcome />
+              <hr />
+            </div>
+          ) : (<div />) }
+          <h1 class='title'>Bookmarks</h1>
+          { newBookmark ? (
+            <div>
+              <h2 class='subtitle'>Add new bookmark</h2>
+              <NewBookmark onSave={reload} onCancel={toggleNewBookmark} />
+            </div>
+          ) : (
+            <div>
+              <button class='button is-fullwidth is-info' onClick={toggleNewBookmark}>Add new bookmark</button>
+            </div>
+          )}
+          { hasBookmarks ? (
+            <div>
+              <hr />
+              <Search onQuery={reload} />
+            </div>
+          ) : (<div />)}
+          { rendered.length ? (
+            <div>
+              <hr />
+              { rendered }
+            </div>
+          ) : (
+            <div>
+              <hr />
+              <p>No bookmarks.</p>
+            </div>
+          )}
+        </div>
+      )
+    }
   }
 }

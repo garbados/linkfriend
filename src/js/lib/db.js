@@ -73,6 +73,7 @@ PouchDB.plugin({
   },
   hasBookmarks: async function (options = {}) {
     const result = await this.query('tags/dateSort', {
+      limit: 0,
       ...options
     })
     const total = result.total_rows
