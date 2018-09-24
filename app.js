@@ -25066,7 +25066,8 @@ function (_Component) {
       this.setState({
         hasBookmarks: false,
         bookmarks: [],
-        newBookmark: false
+        newBookmark: false,
+        loading: false
       });
     }
   }, {
@@ -25197,23 +25198,26 @@ function (_Component) {
       var rendered = bookmarks.map(function (bookmark) {
         return _this2.renderBookmark(bookmark);
       });
-      return (0, _preact.h)("div", null, !hasBookmarks ? (0, _preact.h)("div", null, (0, _preact.h)(_welcome.default, null), (0, _preact.h)("hr", null)) : (0, _preact.h)("div", null), (0, _preact.h)("h1", {
-        "class": 'title'
-      }, "Bookmarks"), loading ? (0, _preact.h)("h2", {
-        "class": 'subtitle'
-      }, "Loading") : (0, _preact.h)("div", null), newBookmark ? (0, _preact.h)("div", null, (0, _preact.h)("h2", {
-        "class": 'subtitle'
-      }, "Add new bookmark"), (0, _preact.h)(_newBookmark.default, {
-        onSave: reload,
-        onCancel: toggleNewBookmark
-      })) : (0, _preact.h)("div", null, (0, _preact.h)("button", {
-        "class": 'button is-fullwidth is-info',
-        onClick: toggleNewBookmark
-      }, "Add new bookmark")), rendered.length ? (0, _preact.h)("div", null, (0, _preact.h)("hr", null), (0, _preact.h)("h2", {
-        "class": 'subtitle'
-      }, "Search bookmarks by tag"), (0, _preact.h)(_search.default, {
-        onQuery: reload
-      }), (0, _preact.h)("hr", null), rendered) : (0, _preact.h)("div", null, (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "No bookmarks.")));
+
+      if (loading) {
+        return (0, _preact.h)("div", null, (0, _preact.h)("h2", {
+          "class": 'subtitle'
+        }, "Loading..."));
+      } else {
+        return (0, _preact.h)("div", null, !hasBookmarks ? (0, _preact.h)("div", null, (0, _preact.h)(_welcome.default, null), (0, _preact.h)("hr", null)) : (0, _preact.h)("div", null), (0, _preact.h)("h1", {
+          "class": 'title'
+        }, "Bookmarks"), newBookmark ? (0, _preact.h)("div", null, (0, _preact.h)("h2", {
+          "class": 'subtitle'
+        }, "Add new bookmark"), (0, _preact.h)(_newBookmark.default, {
+          onSave: reload,
+          onCancel: toggleNewBookmark
+        })) : (0, _preact.h)("div", null, (0, _preact.h)("button", {
+          "class": 'button is-fullwidth is-info',
+          onClick: toggleNewBookmark
+        }, "Add new bookmark")), hasBookmarks ? (0, _preact.h)("div", null, (0, _preact.h)("hr", null), (0, _preact.h)(_search.default, {
+          onQuery: reload
+        })) : (0, _preact.h)("div", null), rendered.length ? (0, _preact.h)("div", null, (0, _preact.h)("hr", null), rendered) : (0, _preact.h)("div", null, (0, _preact.h)("hr", null), (0, _preact.h)("p", null, "No bookmarks.")));
+      }
     }
   }]);
   return Bookmarks;
@@ -26106,7 +26110,9 @@ _pouchdb.default.plugin({
             case 0:
               options = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : {};
               _context3.next = 3;
-              return this.query('tags/dateSort', (0, _objectSpread2.default)({}, options));
+              return this.query('tags/dateSort', (0, _objectSpread2.default)({
+                limit: 0
+              }, options));
 
             case 3:
               result = _context3.sent;
