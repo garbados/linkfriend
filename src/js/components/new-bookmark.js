@@ -100,8 +100,8 @@ export default class NewBookmark extends Component {
                   </div>
                   <p class='help'>Separate tags with commas. Tags are indexed for searching.</p>
                 </div>
-                <div class='field is-grouped'>
-                  <p class='control is-expanded'>
+                <div class='field is-grouped is-grouped-right'>
+                  <p class='control'>
                     <input type='submit' class='button is-link is-fullwidth' value='Save' />
                   </p>
                   <p class='control'>

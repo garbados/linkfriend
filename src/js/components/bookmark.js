@@ -47,9 +47,9 @@ export default class Bookmark extends Component {
             <ShowBookmark bookmark={bookmark} />
             <hr />
             <form>
-              <div class='field is-grouped'>
-                <p class='control is-expanded'>
-                  <a class='button is-fullwidth is-warning' onClick={toggleEdit}>Edit</a>
+              <div class='field is-grouped is-grouped-right'>
+                <p class='control'>
+                  <a class='button is-warning' onClick={toggleEdit}>Edit</a>
                 </p>
                 <p class='control'>
                   <a class='button is-danger' onClick={remove}>Remove</a>
