@@ -1096,7 +1096,7 @@ function alignNearest(scrollingEdgeStart, scrollingEdgeEnd, scrollingSize, scrol
     return 0;
   }
 
-  if (elementEdgeStart < scrollingEdgeStart && elementSize < scrollingSize || elementEdgeEnd > scrollingEdgeEnd && elementSize > scrollingSize) {
+  if (elementEdgeStart <= scrollingEdgeStart && elementSize <= scrollingSize || elementEdgeEnd >= scrollingEdgeEnd && elementSize >= scrollingSize) {
     return elementEdgeStart - scrollingEdgeStart - scrollingBorderStart;
   }
 
@@ -1247,7 +1247,7 @@ var _default = function _default(target, options) {
 };
 
 exports.default = _default;
-module.exports = exports["default"];
+module.exports = exports.default;
 },{}],26:[function(require,module,exports){
 (function (process){
 'use strict';
@@ -2118,7 +2118,7 @@ function (_Component) {
     _this.input_handleBlur = function () {
       // Need setTimeout, so that when the user presses Tab, the activeElement is the next focused element, not the body element
       _this.internalSetTimeout(function () {
-        var downshiftButtonIsActive = _this.props.environment.document.activeElement.dataset.toggle && _this._rootNode && _this._rootNode.contains(_this.props.environment.document.activeElement);
+        var downshiftButtonIsActive = _this.props.environment.document && _this.props.environment.document.activeElement.dataset.toggle && _this._rootNode && _this._rootNode.contains(_this.props.environment.document.activeElement);
 
         if (!_this.isMouseDown && !downshiftButtonIsActive) {
           _this.reset({
@@ -22549,34 +22549,32 @@ arguments[4][52][0].apply(exports,arguments)
 },{"./lib/bytesToUuid":56,"./lib/rng":57,"dup":52}],59:[function(require,module,exports){
 arguments[4][53][0].apply(exports,arguments)
 },{"./lib/bytesToUuid":56,"./lib/rng":57,"dup":53}],60:[function(require,module,exports){
-var preact = require('preact')
-var Markup = require('preact-markup')
-var marked = require('marked')
+var preact = require('preact');
+var Markup = require('preact-markup');
+var marked = require('marked');
 
-module.exports = Markdown
+module.exports = Markdown;
 
 function Markdown(props, opts) {
-  opts = opts || {}
+  opts = opts || {};
   var h = opts.h || preact.h;
+  var markdown, markupOpts, markdownOpts;
   if (typeof props === 'string') {
-    var markupOpts = opts.markupOpts || {}
-    var markdownOpts = opts.markdownOpts || {}
-    return h(Markup, Object.assign({
-      markup: marked(props, markdownOpts),
-      trim: false,
-      type: 'html',
-    }, opts.markupOpts))
+    markdown = props;
+    props = {};
   } else if (props && typeof props.markdown === 'string') {
-    var markupOpts = props.markupOpts || opts.markupOpts || {}
-    var markdownOpts = props.markdownOpts || opts.markdownOpts || {}
-    return h(Markup, Object.assign({
-      markup: marked(props.markdown, markdownOpts),
-      trim: false,
-      type: 'html',
-    }, markupOpts))
+    markdown = props.markdown;
   } else {
-    throw new Error('Invalid arguments. Markdown requires either a `<String>` or object: `{markdown: <String>}`')
+    throw new Error('Invalid arguments. Markdown requires either a `<String>` or object: `{markdown: <String>}`');
   }
+
+  var markupOpts = props.markupOpts || opts.markupOpts || {};
+  var markdownOpts = props.markdownOpts || opts.markdownOpts || {};
+  return h(Markup, Object.assign({
+    markup: marked(markdown, markdownOpts),
+    trim: false,
+    type: 'html',
+  }, markupOpts));
 }
 
 },{"marked":37,"preact":63,"preact-markup":61}],61:[function(require,module,exports){
@@ -22907,6 +22905,9 @@ function Markdown(props, opts) {
         for (var i in props) obj[i] = props[i];
         return obj;
     }
+    function applyRef(ref, value) {
+        if (null != ref) if ('function' == typeof ref) ref(value); else ref.current = value;
+    }
     function cloneElement(vnode, props) {
         return h(vnode.nodeName, extend(extend({}, vnode.attributes), props), arguments.length > 2 ? [].slice.call(arguments, 2) : vnode.children);
     }
@@ -22914,9 +22915,8 @@ function Markdown(props, opts) {
         if (!component.__d && (component.__d = !0) && 1 == items.push(component)) (options.debounceRendering || defer)(rerender);
     }
     function rerender() {
-        var p, list = items;
-        items = [];
-        while (p = list.pop()) if (p.__d) renderComponent(p);
+        var p;
+        while (p = items.pop()) if (p.__d) renderComponent(p);
     }
     function isSameNodeType(node, vnode, hydrating) {
         if ('string' == typeof vnode || 'number' == typeof vnode) return void 0 !== node.splitText;
@@ -22944,8 +22944,8 @@ function Markdown(props, opts) {
     function setAccessor(node, name, old, value, isSvg) {
         if ('className' === name) name = 'class';
         if ('key' === name) ; else if ('ref' === name) {
-            if (old) old(null);
-            if (value) value(node);
+            applyRef(old, null);
+            applyRef(value, node);
         } else if ('class' === name && !isSvg) node.className = value || ''; else if ('style' === name) {
             if (!value || 'string' == typeof value || 'string' == typeof old) node.style.cssText = value || '';
             if (value && 'object' == typeof value) {
@@ -22976,7 +22976,7 @@ function Markdown(props, opts) {
     }
     function flushMounts() {
         var c;
-        while (c = mounts.pop()) {
+        while (c = mounts.shift()) {
             if (options.afterMount) options.afterMount(c);
             if (c.componentDidMount) c.componentDidMount();
         }
@@ -23070,7 +23070,7 @@ function Markdown(props, opts) {
     function recollectNodeTree(node, unmountOnly) {
         var component = node._component;
         if (component) unmountComponent(component); else {
-            if (null != node.__preactattr_ && node.__preactattr_.ref) node.__preactattr_.ref(null);
+            if (null != node.__preactattr_) applyRef(node.__preactattr_.ref, null);
             if (!1 === unmountOnly || null == node.__preactattr_) removeNode(node);
             removeChildren(node);
         }
@@ -23126,7 +23126,7 @@ function Markdown(props, opts) {
             component.props = props;
             component.__x = !1;
             if (0 !== renderMode) if (1 === renderMode || !1 !== options.syncComponentUpdates || !component.base) renderComponent(component, 1, mountAll); else enqueueRender(component);
-            if (component.__r) component.__r(component);
+            applyRef(component.__r, component);
         }
     }
     function renderComponent(component, renderMode, mountAll, isChild) {
@@ -23192,7 +23192,7 @@ function Markdown(props, opts) {
                     base._componentConstructor = componentRef.constructor;
                 }
             }
-            if (!isUpdate || mountAll) mounts.unshift(component); else if (!skip) {
+            if (!isUpdate || mountAll) mounts.push(component); else if (!skip) {
                 if (component.componentDidUpdate) component.componentDidUpdate(previousProps, previousState, snapshot);
                 if (options.afterUpdate) options.afterUpdate(component);
             }
@@ -23233,13 +23233,13 @@ function Markdown(props, opts) {
         component.base = null;
         var inner = component._component;
         if (inner) unmountComponent(inner); else if (base) {
-            if (base.__preactattr_ && base.__preactattr_.ref) base.__preactattr_.ref(null);
+            if (null != base.__preactattr_) applyRef(base.__preactattr_.ref, null);
             component.__b = base;
             removeNode(base);
             recyclerComponents.push(component);
             removeChildren(base);
         }
-        if (component.__r) component.__r(null);
+        applyRef(component.__r, null);
     }
     function Component(props, context) {
         this.__d = !0;
@@ -23250,6 +23250,9 @@ function Markdown(props, opts) {
     }
     function render(vnode, parent, merge) {
         return diff(merge, vnode, {}, !1, parent, !1);
+    }
+    function createRef() {
+        return {};
     }
     var VNode = function() {};
     var options = {};
@@ -23280,6 +23283,7 @@ function Markdown(props, opts) {
         h: h,
         createElement: h,
         cloneElement: cloneElement,
+        createRef: createRef,
         Component: Component,
         render: render,
         rerender: rerender,
@@ -24651,9 +24655,9 @@ module.exports = warning;
 }).call(this,require('_process'))
 },{"_process":64}],73:[function(require,module,exports){
 module.exports={
-  "name": "p2p-social-bookmarking",
+  "name": "linkfriend",
   "version": "1.0.0-alpha",
-  "description": "Peer-to-peer social bookmarking. Archive, search, and share your slice of the web.",
+  "description": "A bookmarking tool that stores your data in the browser.",
   "main": "./src/js/index.js",
   "scripts": {
     "pretest": "standard",
@@ -24675,7 +24679,7 @@ module.exports={
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garbados/p2p-social-bookmarking.git"
+    "url": "git+https://github.com/garbados/linkfriend.git"
   },
   "keywords": [
     "p2p",
@@ -24685,37 +24689,37 @@ module.exports={
   "author": "D Dino [https://toot.cat/@garbados]",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/garbados/p2p-social-bookmarking/issues"
+    "url": "https://github.com/garbados/linkfriend/issues"
   },
-  "homepage": "https://github.com/garbados/p2p-social-bookmarking#readme",
+  "homepage": "https://github.com/garbados/linkfriend#readme",
   "devDependencies": {
-    "@babel/core": "^7.0.1",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "@fortawesome/fontawesome-free": "^5.3.1",
+    "@babel/runtime": "^7.3.1",
+    "@fortawesome/fontawesome-free": "^5.7.1",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babelify": "^10.0.0",
-    "browserify": "^16.2.2",
-    "bulma": "^0.7.1",
+    "browserify": "^16.2.3",
+    "bulma": "^0.7.4",
     "mocha": "^5.2.0",
-    "node-sass": "^4.9.3",
-    "npm-run-all": "^4.1.3",
-    "sane": "^3.0.0",
+    "node-sass": "^4.11.0",
+    "npm-run-all": "^4.1.5",
+    "sane": "^4.0.2",
     "selenium-webdriver": "^4.0.0-alpha.1",
-    "serve": "^10.0.1",
+    "serve": "^10.1.2",
     "standard": "^12.0.1"
   },
   "dependencies": {
-    "downshift": "^2.2.2",
+    "downshift": "^2.2.3",
     "history": "^4.7.2",
     "lodash.isequal": "^4.5.0",
     "pouchdb": "^7.0.0",
     "pouchdb-find": "^7.0.0",
-    "preact": "^8.3.1",
-    "preact-markdown": "^0.4.0",
+    "preact": "^8.4.2",
+    "preact-markdown": "^0.4.1",
     "preact-router": "^2.6.1",
     "uuid": "^3.3.2"
   },
@@ -24819,9 +24823,11 @@ function (_Component) {
         }, _callee, this);
       }));
 
-      return function componentDidMount() {
+      function componentDidMount() {
         return _componentDidMount.apply(this, arguments);
-      };
+      }
+
+      return componentDidMount;
     }()
   }, {
     key: "render",
@@ -24833,7 +24839,7 @@ function (_Component) {
       }, (0, _preact.h)("div", {
         "class": 'columns'
       }, (0, _preact.h)("div", {
-        "class": 'column is-narrow'
+        "class": 'column is-one-quarter'
       }, (0, _preact.h)("aside", {
         "class": 'menu'
       }, (0, _preact.h)("p", {
@@ -24849,7 +24855,7 @@ function (_Component) {
       }, (0, _preact.h)("i", {
         "class": 'fas fa-code'
       }), " Source"))))), (0, _preact.h)("div", {
-        "class": 'column'
+        "class": 'column is-three-quarters'
       }, (0, _preact.h)(_preactRouter.default, {
         history: (0, _createHashHistory.default)()
       }, (0, _preact.h)(_bookmarks.default, {
@@ -24967,33 +24973,27 @@ function (_Component) {
         };
       }();
 
-      return (0, _preact.h)("div", null, editing ? (0, _preact.h)("div", null, (0, _preact.h)(_newBookmark.default, {
+      return (0, _preact.h)("div", {
+        "class": 'box'
+      }, editing ? (0, _preact.h)("div", null, (0, _preact.h)(_newBookmark.default, {
         bookmark: bookmark,
         onCancel: toggleEdit,
         onSave: save
-      })) : (0, _preact.h)("div", {
-        "class": 'columns'
-      }, (0, _preact.h)("div", {
-        "class": 'column is-9'
-      }, (0, _preact.h)(_showBookmark.default, {
+      })) : (0, _preact.h)("div", null, (0, _preact.h)(_showBookmark.default, {
         bookmark: bookmark
-      })), (0, _preact.h)("div", {
-        "class": 'column is-3'
-      }, (0, _preact.h)("form", null, (0, _preact.h)("div", {
-        "class": 'field'
+      }), (0, _preact.h)("hr", null), (0, _preact.h)("form", null, (0, _preact.h)("div", {
+        "class": 'field is-grouped'
       }, (0, _preact.h)("p", {
-        "class": 'control'
-      }, (0, _preact.h)("a", {
-        "class": 'button is-fullwidth is-info',
-        onClick: toggleEdit
-      }, "Edit"))), (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
-        "class": 'control'
+        "class": 'control is-expanded'
       }, (0, _preact.h)("a", {
         "class": 'button is-fullwidth is-warning',
+        onClick: toggleEdit
+      }, "Edit")), (0, _preact.h)("p", {
+        "class": 'control'
+      }, (0, _preact.h)("a", {
+        "class": 'button is-danger',
         onClick: remove
-      }, "Remove")))))));
+      }, "Remove"))))));
     }
   }]);
   return Bookmark;
@@ -25135,9 +25135,11 @@ function (_Component) {
         }, _callee, this);
       }));
 
-      return function reload() {
+      function reload() {
         return _reload.apply(this, arguments);
-      };
+      }
+
+      return reload;
     }()
   }, {
     key: "componentDidMount",
@@ -25160,9 +25162,11 @@ function (_Component) {
         }, _callee2, this);
       }));
 
-      return function componentDidMount() {
+      function componentDidMount() {
         return _componentDidMount.apply(this, arguments);
-      };
+      }
+
+      return componentDidMount;
     }()
   }, {
     key: "toggleNewBookmark",
@@ -25310,9 +25314,11 @@ function (_Component) {
         }, _callee, this);
       }));
 
-      return function componentDidMount() {
+      function componentDidMount() {
         return _componentDidMount.apply(this, arguments);
-      };
+      }
+
+      return componentDidMount;
     }()
   }, {
     key: "submit",
@@ -25387,10 +25393,8 @@ function (_Component) {
       }, (0, _preact.h)("div", {
         "class": 'columns'
       }, (0, _preact.h)("div", {
-        "class": 'column is-9'
-      }, (0, _preact.h)("div", {
-        "class": 'box'
-      }, (0, _preact.h)("div", {
+        "class": 'column'
+      }, (0, _preact.h)("div", null, (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("div", {
         "class": 'control'
@@ -25438,24 +25442,20 @@ function (_Component) {
         items: tags
       })), (0, _preact.h)("p", {
         "class": 'help'
-      }, "Separate tags with commas. Tags are indexed for searching.")))), (0, _preact.h)("div", {
-        "class": 'column is-3'
-      }, (0, _preact.h)("div", {
-        "class": 'field'
+      }, "Separate tags with commas. Tags are indexed for searching.")), (0, _preact.h)("div", {
+        "class": 'field is-grouped'
       }, (0, _preact.h)("p", {
-        "class": 'control'
+        "class": 'control is-expanded'
       }, (0, _preact.h)("input", {
         type: 'submit',
-        "class": 'button is-fullwidth is-success',
+        "class": 'button is-link is-fullwidth',
         value: 'Save'
-      }))), (0, _preact.h)("div", {
-        "class": 'field'
-      }, (0, _preact.h)("p", {
+      })), (0, _preact.h)("p", {
         "class": 'control'
       }, (0, _preact.h)("a", {
-        "class": 'button is-fullwidth is-info',
+        "class": 'button is-dark is-fullwidth',
         onClick: onCancel
-      }, "Cancel")))))));
+      }, "Cancel"))))))));
     }
   }]);
   return NewBookmark;
@@ -25534,7 +25534,7 @@ function (_Typeahead) {
         return (0, _preact.h)("li", getItemProps({
           key: item,
           index: index,
-          item: (0, _toConsumableArray2.default)(currentEntries).concat(["".concat(operand).concat(item)]).join(', ')
+          item: [].concat((0, _toConsumableArray2.default)(currentEntries), ["".concat(operand).concat(item)]).join(', ')
         }), (0, _preact.h)("a", {
           "class": highlightedIndex === index ? 'is-active' : ''
         }, item));
@@ -25590,9 +25590,11 @@ function (_Component) {
         }, _callee, this);
       }));
 
-      return function componentDidMount() {
+      function componentDidMount() {
         return _componentDidMount.apply(this, arguments);
-      };
+      }
+
+      return componentDidMount;
     }()
   }, {
     key: "submit",
@@ -25643,7 +25645,9 @@ function (_Component) {
         label: 'Search',
         placeholder: 'Search',
         items: tags
-      }))), (0, _preact.h)("div", {
+      })), (0, _preact.h)("p", {
+        "class": 'help'
+      }, "Search by tags. Separate terms with ','. Precede terms with '+' to require a term, '-' to exclude it.")), (0, _preact.h)("div", {
         "class": 'field'
       }, (0, _preact.h)("div", {
         "class": 'control'
@@ -25651,9 +25655,7 @@ function (_Component) {
         type: 'submit',
         "class": 'button is-fullwidth is-success',
         value: 'Search'
-      })), (0, _preact.h)("p", {
-        "class": 'help'
-      }, "Search by tags. Separate terms with ','. Precede terms with '+' to require a term, '-' to exclude it.")));
+      }))));
     }
   }]);
   return Search;
@@ -25699,15 +25701,24 @@ function (_Component) {
   }
 
   (0, _createClass2.default)(ShowBookmark, [{
+    key: "renderTags",
+    value: function renderTags(tags) {
+      return (0, _preact.h)("div", {
+        "class": 'tags'
+      }, tags.map(function (tag) {
+        return (0, _preact.h)("span", {
+          "class": 'tag is-dark'
+        }, "#", tag);
+      }));
+    }
+  }, {
     key: "render",
     value: function render(_ref) {
       var bookmark = _ref.bookmark;
       var createdAt = bookmark.createdAt ? (0, _util.getHumanDate)(bookmark.createdAt) : '';
       var updatedAt = bookmark.updatedAt ? (0, _util.getHumanDate)(bookmark.updatedAt) : '';
       var tags = bookmark.tags ? bookmark.tags.join(', ') : '';
-      return (0, _preact.h)("div", {
-        "class": 'box'
-      }, (0, _preact.h)("h1", {
+      return (0, _preact.h)("div", null, (0, _preact.h)("h3", {
         "class": 'title'
       }, (0, _preact.h)("a", {
         href: bookmark.url,
@@ -25716,7 +25727,7 @@ function (_Component) {
         "class": 'content'
       }, (0, _preact.h)(_preactMarkdown.default, {
         markdown: bookmark.description
-      })), bookmark.tags ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Tags: ", tags))) : (0, _preact.h)("p", null), (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Created: ", createdAt))), updatedAt ? (0, _preact.h)("p", null, (0, _preact.h)("small", null, (0, _preact.h)("em", null, "Updated: ", updatedAt))) : (0, _preact.h)("p", null));
+      })), bookmark.tags ? this.renderTags(bookmark.tags) : (0, _preact.h)("p", null));
     }
   }]);
   return ShowBookmark;
@@ -25790,7 +25801,7 @@ function (_Component) {
         return (0, _preact2.h)("li", getItemProps({
           key: item,
           index: index,
-          item: (0, _toConsumableArray2.default)(currentEntries).concat([item]).join(', ')
+          item: [].concat((0, _toConsumableArray2.default)(currentEntries), [item]).join(', ')
         }), (0, _preact2.h)("a", {
           "class": highlightedIndex === index ? 'is-active' : ''
         }, item));
@@ -26055,9 +26066,11 @@ _pouchdb.default.plugin({
       }, _callee, this, [[2, 7]]);
     }));
 
-    return function setup() {
+    function setup() {
       return _setup.apply(this, arguments);
-    };
+    }
+
+    return setup;
   }(),
   getType: function () {
     var _getType = (0, _asyncToGenerator2.default)(
@@ -26092,9 +26105,11 @@ _pouchdb.default.plugin({
       }, _callee2, this);
     }));
 
-    return function getType(_x, _x2) {
+    function getType(_x, _x2) {
       return _getType.apply(this, arguments);
-    };
+    }
+
+    return getType;
   }(),
   hasBookmarks: function () {
     var _hasBookmarks = (0, _asyncToGenerator2.default)(
@@ -26127,9 +26142,11 @@ _pouchdb.default.plugin({
       }, _callee3, this);
     }));
 
-    return function hasBookmarks() {
+    function hasBookmarks() {
       return _hasBookmarks.apply(this, arguments);
-    };
+    }
+
+    return hasBookmarks;
   }(),
   getBookmarks: function () {
     var _getBookmarks = (0, _asyncToGenerator2.default)(
@@ -26169,9 +26186,11 @@ _pouchdb.default.plugin({
       }, _callee4, this);
     }));
 
-    return function getBookmarks() {
+    function getBookmarks() {
       return _getBookmarks.apply(this, arguments);
-    };
+    }
+
+    return getBookmarks;
   }(),
   getLists: function () {
     var _getLists = (0, _asyncToGenerator2.default)(
@@ -26200,9 +26219,11 @@ _pouchdb.default.plugin({
       }, _callee5, this);
     }));
 
-    return function getLists() {
+    function getLists() {
       return _getLists.apply(this, arguments);
-    };
+    }
+
+    return getLists;
   }(),
   getTags: function () {
     var _getTags = (0, _asyncToGenerator2.default)(
@@ -26241,9 +26262,11 @@ _pouchdb.default.plugin({
       }, _callee6, this);
     }));
 
-    return function getTags() {
+    function getTags() {
       return _getTags.apply(this, arguments);
-    };
+    }
+
+    return getTags;
   }(),
   _parseQuery: function _parseQuery(query) {
     var tagSelector = query.split(',').map(function (token) {
@@ -26322,9 +26345,11 @@ _pouchdb.default.plugin({
       }, _callee7, this);
     }));
 
-    return function searchTags(_x3) {
+    function searchTags(_x3) {
       return _searchTags.apply(this, arguments);
-    };
+    }
+
+    return searchTags;
   }()
 });
 
