@@ -54,8 +54,8 @@ export default class NewBookmark extends Component {
       <div>
         <form onSubmit={this.submit(bookmark, save)}>
           <div class='columns'>
-            <div class='column is-9'>
-              <div class='box'>
+            <div class='column'>
+              <div>
                 <div class='field'>
                   <div class='control'>
                     <div class='label'>Title</div>
@@ -100,18 +100,14 @@ export default class NewBookmark extends Component {
                   </div>
                   <p class='help'>Separate tags with commas. Tags are indexed for searching.</p>
                 </div>
-              </div>
-            </div>
-            <div class='column is-3'>
-              <div class='field'>
-                <p class='control'>
-                  <input type='submit' class='button is-fullwidth is-success' value='Save' />
-                </p>
-              </div>
-              <div class='field'>
-                <p class='control'>
-                  <a class='button is-fullwidth is-info' onClick={onCancel}>Cancel</a>
-                </p>
+                <div class='field is-grouped'>
+                  <p class='control is-expanded'>
+                    <input type='submit' class='button is-link is-fullwidth' value='Save' />
+                  </p>
+                  <p class='control'>
+                    <a class='button is-dark is-fullwidth' onClick={onCancel}>Cancel</a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>

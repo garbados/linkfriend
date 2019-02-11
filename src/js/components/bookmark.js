@@ -33,7 +33,7 @@ export default class Bookmark extends Component {
     }
 
     return (
-      <div>
+      <div class='box'>
         { editing ? (
           <div>
             <NewBookmark
@@ -43,27 +43,21 @@ export default class Bookmark extends Component {
             />
           </div>
         ) : (
-          <div class='columns'>
-            <div class='column is-9'>
-              <ShowBookmark bookmark={bookmark} />
-            </div>
-            <div class='column is-3'>
-              <form>
-                <div class='field'>
-                  <p class='control'>
-                    <a class='button is-fullwidth is-info' onClick={toggleEdit}>Edit</a>
-                  </p>
-                </div>
-                <div class='field'>
-                  <p class='control'>
-                    <a class='button is-fullwidth is-warning' onClick={remove}>Remove</a>
-                  </p>
-                </div>
-              </form>
-            </div>
+          <div>
+            <ShowBookmark bookmark={bookmark} />
+            <hr />
+            <form>
+              <div class='field is-grouped'>
+                <p class='control is-expanded'>
+                  <a class='button is-fullwidth is-warning' onClick={toggleEdit}>Edit</a>
+                </p>
+                <p class='control'>
+                  <a class='button is-danger' onClick={remove}>Remove</a>
+                </p>
+              </div>
+            </form>
           </div>
-        )
-        }
+        ) }
       </div>
     )
   }

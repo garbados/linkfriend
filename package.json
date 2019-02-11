@@ -1,7 +1,7 @@
 {
-  "name": "p2p-social-bookmarking",
+  "name": "linkfriend",
   "version": "1.0.0-alpha",
-  "description": "Peer-to-peer social bookmarking. Archive, search, and share your slice of the web.",
+  "description": "A bookmarking tool that stores your data in the browser.",
   "main": "./src/js/index.js",
   "scripts": {
     "pretest": "standard",

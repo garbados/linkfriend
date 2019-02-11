@@ -71,6 +71,11 @@ export default class Search extends Component {
               items={tags}
             />
           </div>
+          <p class='help'>
+            Search by tags. Separate terms with ','.
+            Precede terms with '+' to require a term,
+            '-' to exclude it.
+          </p>
         </div>
         <div class='field'>
           <div class='control'>
@@ -80,11 +85,6 @@ export default class Search extends Component {
               value='Search'
             />
           </div>
-          <p class='help'>
-            Search by tags. Separate terms with ','.
-            Precede terms with '+' to require a term,
-            '-' to exclude it.
-          </p>
         </div>
       </form>
     )

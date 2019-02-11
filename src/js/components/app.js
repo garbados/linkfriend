@@ -19,7 +19,7 @@ export default class App extends Component {
       <section class='section'>
         <div class='container'>
           <div class='columns'>
-            <div class='column is-narrow'>
+            <div class='column is-one-quarter'>
               <aside class='menu'>
                 <p class='menu-label'>{ name }</p>
                 <ul class='menu-list'>
@@ -29,7 +29,7 @@ export default class App extends Component {
                 </ul>
               </aside>
             </div>
-            <div class='column'>
+            <div class='column is-three-quarters'>
               <Router history={createHashHistory()}>
                 <Bookmarks default path='' />
               </Router>
