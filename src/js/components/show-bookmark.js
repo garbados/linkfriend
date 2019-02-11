@@ -8,10 +8,10 @@ import { getHumanDate } from '../lib/util'
 export default class ShowBookmark extends Component {
   renderTags (tags) {
     return (
-      <div class="tags">
-      { tags.map((tag) => (
-        <span class="tag is-dark">#{ tag }</span>
-      )) }
+      <div class='tags'>
+        { tags.map((tag) => (
+          <span class='tag is-dark'>#{ tag }</span>
+        )) }
       </div>
     )
   }
