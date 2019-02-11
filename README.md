@@ -1,13 +1,11 @@
-# P2P Social Bookmarking
+# LinkFriend
 
-[![Build Status](https://img.shields.io/travis/garbados/p2p-social-bookmarking/master.svg?style=flat-square)](https://travis-ci.org/garbados/p2p-social-bookmarking)
-[![Coverage Status](https://img.shields.io/coveralls/github/garbados/p2p-social-bookmarking/master.svg?style=flat-square)](https://coveralls.io/github/garbados/p2p-social-bookmarking?branch=master)
+[![Build Status](https://img.shields.io/travis/garbados/linkfriend/master.svg?style=flat-square)](https://travis-ci.org/garbados/linkfriend)
+[![Coverage Status](https://img.shields.io/coveralls/github/garbados/linkfriend/master.svg?style=flat-square)](https://coveralls.io/github/garbados/linkfriend?branch=master)
 [![Stability](https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square)](https://nodejs.org/api/documentation.html#documentation_stability_index)
 [![JS Standard Style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
 
-*Working title. Cutesy moniker TBD.*
-
-A browser application for archiving, searching, and sharing bookmarks. At least, that's the goal. This project is a work in progress and will update accordingly as it develops.
+A browser application for archiving and searching bookmarks.
 
 ## Goals
 
@@ -15,13 +13,11 @@ It's so creepy that every bookmarking service wants your data. Look, I just want
 
 This application tries to provide those features while respecting your privacy through its architecture:
 
-- Information is stored on your device. Unless you choose to share it with another user, it never leaves your device.
-- No central servers to administrate, just a static application.
-- Save, annotate, and archive bookmarks.
-- Index bookmarks so you can search for them.
-- Share bookmarks or subsets thereof with your friends.
-- Search among all the bookmarks that have been shared with you.
-- Moderate bookmarks shared with you, such as by hiding certain tags.
+- [x] Information is stored on your device. Unless you choose to share it with another user, it never leaves your device.
+- [x] No central servers to administrate, just a static application.
+- [x] Save, annotate, and archive bookmarks.
+- [x] Index bookmarks so you can search for them.
+- [ ] Share bookmarks or subsets thereof with your friends. *Pending advancements in P2P browser technologies.*
 
 The vision I want this application to facilitate is this: a community search engine and archival tool where individuals can freely associate to develop, preserve, and explore their own corner of the web. It is not meant to replace web-wide search engines and concerns itself with a different use case, that is searching for things already known to you and yours. "Where was that thing I read?", "What was that article my friend sent me?", "What did that page look like before it disappeared?" etc.
 
@@ -71,19 +67,17 @@ V2 introduces durability features like backups.
 
 *These instructions are intended for the V1 application. The app is currently at V0.*
 
-As the application lives on the browser, there is no need to install anything. Just visit the [demo site](https://garbados.github.io/p2p-social-bookmarking/#/) to start using it.
+As the application lives on the browser, there is no need to install anything. Just visit the [demo site](https://garbados.github.io/linkfriend/#/) to start using it.
 
-If you visit the website using the [Beaker Browser](https://beakerbrowser.com/), you will be able to share bookmarks with friends or follow lists of their bookmarks using Dat URLs.
-
-TODO: screenshots describing features, usage patterns, etc.
+<!-- If you visit the website using the [Beaker Browser](https://beakerbrowser.com/), you will be able to share bookmarks with friends or follow lists of their bookmarks using Dat URLs. -->
 
 ## Development
 
 To work on the source code, download it with [git](https://git-scm.com/) and build it with [Node.js](https://nodejs.org/en/):
 
 ```bash
-$ git clone https://github.com/garbados/p2p-social-bookmarking
-$ cd p2p-social-bookmarking
+$ git clone https://github.com/garbados/linkfriend
+$ cd linkfriend
 $ npm install
 ```
 
@@ -122,9 +116,9 @@ $ npm test
 
 All contributions are welcome but will be moderated at the discretion of the project's maintainers. This section will update as governance policies emerge and evolve.
 
-To report a bug or request a feature, please [file and issue](https://github.com/garbados/p2p-social-bookmarking/issues).
+To report a bug or request a feature, please [file and issue](https://github.com/garbados/linkfriend/issues).
 
-To share a patch, please [submit a pull request](https://github.com/garbados/p2p-social-bookmarking/pulls).
+To share a patch, please [submit a pull request](https://github.com/garbados/linkfriend/pulls).
 
 ## License
 
