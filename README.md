@@ -9,7 +9,7 @@ A browser application for archiving and searching bookmarks.
 
 ## Goals
 
-It's so creepy that every bookmarking service wants your data. Look, I just want something better than a text file, OK? A place I can drop links so I can close tabs. I want to annotate bookmarks, archive them to prevent dead links, and maybe (MAYBE) share them with people. Generally speaking, I don't want this information to leave my device, and I *really* don't some stalker-as-a-service selling it.
+It's so creepy that every bookmarking service wants your data. Look, I just want something better than a text file, OK? A place I can drop links so I can close tabs. I want to annotate bookmarks, archive them to prevent dead links, and maybe (MAYBE) share them with people. Generally speaking, I don't want this information to leave my device, and I *really* don't want some stalker-as-a-service selling it.
 
 This application tries to provide those features while respecting your privacy through its architecture:
 
