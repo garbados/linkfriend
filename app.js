@@ -24982,11 +24982,11 @@ function (_Component) {
       })) : (0, _preact.h)("div", null, (0, _preact.h)(_showBookmark.default, {
         bookmark: bookmark
       }), (0, _preact.h)("hr", null), (0, _preact.h)("form", null, (0, _preact.h)("div", {
-        "class": 'field is-grouped'
+        "class": 'field is-grouped is-grouped-right'
       }, (0, _preact.h)("p", {
-        "class": 'control is-expanded'
+        "class": 'control'
       }, (0, _preact.h)("a", {
-        "class": 'button is-fullwidth is-warning',
+        "class": 'button is-warning',
         onClick: toggleEdit
       }, "Edit")), (0, _preact.h)("p", {
         "class": 'control'
@@ -25443,9 +25443,9 @@ function (_Component) {
       })), (0, _preact.h)("p", {
         "class": 'help'
       }, "Separate tags with commas. Tags are indexed for searching.")), (0, _preact.h)("div", {
-        "class": 'field is-grouped'
+        "class": 'field is-grouped is-grouped-right'
       }, (0, _preact.h)("p", {
-        "class": 'control is-expanded'
+        "class": 'control'
       }, (0, _preact.h)("input", {
         type: 'submit',
         "class": 'button is-link is-fullwidth',
